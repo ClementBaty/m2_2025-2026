@@ -24,7 +24,16 @@ Projet GITHUB de travail avec les étudiants de master 2 de l'IUJM (CUR)
 
 ## Installation
 
-TODO
+### Cycle de travail
+
+- git clone
+- git checkout BRANCHNAME (main / branche_x branche_tests)
+- git add filename
+- git commit -m "CommitMSG"
+- git push
+
+**Remarque** : pensez à récupérer les dernières modifs en faisant git pull ou git rebase ou git checkout quand vous vous mettez au travail pour récuperer les dernieres informations :)
+Entraîner vous sur la branche_tests avec un camarade pour mieux comprendre la différence entre les trois méthodes(pull/rebase/checkout !
 
 ## Utilisation
 
