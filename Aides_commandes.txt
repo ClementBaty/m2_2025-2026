@@ -15,3 +15,11 @@ git status
 git pull
 git rebase
 git push
+
+
+Si on veut modifier le nom d'un fichier avec git :
+$ git mv Aide_commandes.txt Aides_commandes.txt
+$ git status
+$ git commit -m "modification nom Aides_commandes"
+$ git push
+git add
