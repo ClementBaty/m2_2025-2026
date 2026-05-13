@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>972</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="F_title_label">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>10</y>
+      <width>131</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Visualisation des résultats d’analyse</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="F_load_button">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>191</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Charger un fichier analysis.json / analysis.csv</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="F_graph_combo">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>50</y>
+      <width>161</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="editable">
+     <bool>true</bool>
+    </property>
+    <property name="currentText">
+     <string>Choisir le graphique à afficher</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="F_plot_widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>321</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #f5f5f5;
+border: 1px solid #c0c0c0;
+border-radius: 5px;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="F_refresh_button">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>290</y>
+      <width>56</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Actualiser</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="F_export_button">
+    <property name="geometry">
+     <rect>
+      <x>265</x>
+      <y>290</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Exporter le graphique</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="F_quit_button">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>290</y>
+      <width>56</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Quitter</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="F_info_text">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>90</y>
+      <width>81</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="plainText">
+     <string>Aucun fichier chargé.</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>972</width>
+     <height>18</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
