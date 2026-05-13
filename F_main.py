@@ -4,10 +4,13 @@ import F_extracteur_de_Donnee
 from PyQt5.uic import loadUi
 
 
-class Fenetre(QMainWindow):
+class FenetrePrincipale(QMainWindow):
     def __init__(self):
         super().__init__()
         loadUi(r"F_Ui\F_Interface_1.ui", self)
+
+        self.fenetreGraphique = Fenetregraphique()
+
         self.chemin = "test"
         self.fichier = None
 
@@ -54,11 +57,15 @@ class Fenetre(QMainWindow):
         self.chemin = file_path
         self.url_input.setText(self.chemin)
     def graph(self):
+
+        self.fenetreGraphique.show()
+class Fenetregraphique(QMainWindow):
+    def __init__(self):
+        super().__init__()
         loadUi(r"F_Ui\F_graph_window.ui", self)
 
-
-
+        self.F_quit_button.clicked.connect(self.close)
 app = QApplication(sys.argv)
-fenetre = Fenetre()
+fenetre = FenetrePrincipale()
 fenetre.show()
 sys.exit(app.exec_())
