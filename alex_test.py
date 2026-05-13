@@ -14,7 +14,7 @@ and saves everything into a CSV file using pandas.
 Author: 
 
 - Alex Grapin
-- Groupe A
+- audioGroupe A
 """
 
 from datetime import datetime
@@ -51,8 +51,8 @@ class SignalAcquisition:
         - sample rate (Hz)
         - duration (seconds)
         """
-        self.signal_type = input("Enter signal type (ex: ECG, EEG, Audio): ")
-        self.source = input("Enter signal source (ex: Sensor1, File, Device): ")
+        self.signal_type = input("Enter signal type (ex: Audio): ")
+        self.source = input("Enter signal source (ex: Micro): ")
 
         self.sample_rate = float(input("Enter sample rate in Hz (ex: 1000): "))
         self.duration = float(input("Enter duration in seconds (ex: 5): "))
