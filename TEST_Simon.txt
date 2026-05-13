@@ -2,3 +2,6 @@ ss06384z@ETUROA135203 MINGW64 /U/Projet_prog/Test
 $ git clone https://github.com/ClementBaty/m2_2025-2026.git
 $ cd m2_2025-2026/
 $ git checkout branche_tests
+$ git add TEST_Simon.txt
+$ git commit -m "Projet test simon"
+$ git push
