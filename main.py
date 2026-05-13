@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Projet M2 - Groupe A
-Module : <nom_du_module>
+Module : Acquisition des Signaux
 
 Description
 -----------
@@ -15,8 +15,11 @@ Architecture basée sur :
 
 Auteur(s)
 ----------
-- Tom Bottazzini
-- <membres_du_groupe>
+- Manal BETTAOUI
+- Alex GRAPIN
+- Simon SILVESTRE
+- Tom BOTTAZZINI
+
 
 Date
 -----
@@ -40,7 +43,7 @@ Technologies obligatoires :
 - PyQt5 Designer / pyuic5
 - SciPy
 - Pandas
-- CSV / JSON
+- CSV
 
 Bonnes pratiques imposées :
 - Comprendre le code généré
@@ -53,64 +56,43 @@ Bonnes pratiques imposées :
 # IMPORTS STANDARD
 # ============================================================================
 
-import os
 import sys
-import json
 import csv
 from pathlib import Path
 
-# ============================================================================
-# IMPORTS SCIENTIFIQUES
-# ============================================================================
-
-import numpy as np
-import pandas as pd
-import scipy
 
 # ============================================================================
 # IMPORTS PYQT5
 # ============================================================================
-
-from PyQt5.QtWidgets import (
-    QApplication,
-    QMainWindow,
-    QWidget,
-    QMessageBox
-)
+from PyQt5 import QtWidgets
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
+
+from Dialog import Ui_Dialog
 
 # ============================================================================
 # CONSTANTES
 # ============================================================================
 
-BASE_DIR = Path(__file__).resolve().parent
 
 # ============================================================================
 # CLASSES
 # ============================================================================
 
 
-class MainWindow(QMainWindow):
+class MainWindow(Ui_Dialog):
     """
     Fenêtre principale de l'application.
     """
-
-    def __init__(self):
-        """
-        Initialisation de la fenêtre principale.
-        """
-        super().__init__()
-
-        self.initialize_ui()
-
-    def initialize_ui(self):
-        """
-        Configure l'interface utilisateur.
-        """
-        self.setWindowTitle("Projet M2 - Groupe A")
-        self.resize(800, 600)
+    def __init__(self, dialog):
+        Ui_Dialog.__init__(self)
+        self.setupUi(dialog)
+        self.connexions()
+    
+    def connexions(self):
+        # Connect the .clicked() signal with the .calculate() slot
+        self.pushButton.clicked.connect(self.calculate)
 
 
 # ============================================================================
@@ -118,21 +100,7 @@ class MainWindow(QMainWindow):
 # ============================================================================
 
 
-def load_signals_matrix(file_path: str):
-    """
-    Charge une matrice numpy depuis un fichier .npy.
 
-    Parameters
-    ----------
-    file_path : str
-        Chemin du fichier.
-
-    Returns
-    -------
-    numpy.ndarray
-        Matrice chargée.
-    """
-    return np.load(file_path)
 
 
 # ============================================================================
@@ -140,10 +108,9 @@ def load_signals_matrix(file_path: str):
 # ============================================================================
 
 if __name__ == "__main__":
-
-    app = QApplication(sys.argv)
-
-    window = MainWindow()
-    window.show()
-
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QDialog()
+    ui = Ui_Dialog()
+    ui.setupUi(Dialog)
+    Dialog.show()
     sys.exit(app.exec_())
