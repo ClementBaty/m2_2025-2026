@@ -1,8 +1,9 @@
 from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow
-import sys
-import F_extracteur_de_Donnee
 from PyQt5.uic import loadUi
+import sys
 
+from F_extracteur_de_Donnee import Donnee
+from F_FenetreGraphique import Fenetregraphique
 
 class FenetrePrincipale(QMainWindow):
     def __init__(self):
@@ -59,12 +60,8 @@ class FenetrePrincipale(QMainWindow):
     def graph(self):
 
         self.fenetreGraphique.show()
-class Fenetregraphique(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        loadUi(r"F_Ui\F_graph_window.ui", self)
 
-        self.F_quit_button.clicked.connect(self.close)
+
 app = QApplication(sys.argv)
 fenetre = FenetrePrincipale()
 fenetre.show()
