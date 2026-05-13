@@ -9,11 +9,14 @@ class Fenetre(QMainWindow):
         super().__init__()
         loadUi(r"F_Ui\F_Interface_1.ui", self)
         self.chemin = "test"
-        self.url_input.setText(self.chemin)
-        self.url_bouton.clicked.connect(self.choose_files_csv_json_pyqt5)
-
-
         self.fichier = None
+
+        self.url_input.setText(self.chemin)
+
+        self.url_bouton.clicked.connect(self.choose_files_csv_json_pyqt5)
+        self.affichage_graph.clicked.connect(self.graph)
+        #self.F_quit_button.clicked.connect(self.close)
+
         """
         if self.chemin is not None:
             self.fichier = F_extracteur_de_Donnee.Donnee(self.chemin)
@@ -50,6 +53,9 @@ class Fenetre(QMainWindow):
 
         self.chemin = file_path
         self.url_input.setText(self.chemin)
+    def graph(self):
+        loadUi(r"F_Ui\F_graph_window.ui", self)
+
 
 
 app = QApplication(sys.argv)
