@@ -8,10 +8,11 @@ class Fenetre(QMainWindow):
     def __init__(self):
         super().__init__()
         loadUi(r"F_Ui\F_Interface_1.ui", self)
-
+        self.chemin = "test"
+        self.url_input.setText(self.chemin)
         self.url_bouton.clicked.connect(self.choose_files_csv_json_pyqt5)
 
-        self.chemin = None
+
         self.fichier = None
         """
         if self.chemin is not None:
@@ -47,7 +48,8 @@ class Fenetre(QMainWindow):
             "Fichiers JSON ou CSV (*.json *.csv)"
         )
 
-        return file_path
+        self.chemin = file_path
+        self.url_input.setText(self.chemin)
 
 
 app = QApplication(sys.argv)
