@@ -1,6 +1,6 @@
 **Groupe A : Silvestre SIMON, Tom BOTTAZZINI,BETTAOUI Manal , GRAPIN Alex**
 
-**Groupe B : ALI Elian, BACAR Nadjilat, KABASELE TSHIANDA Deogracias, OUATTARA Hassan Nadien**  
+**Groupe B : ALI Elian, BACAR Nadjilat, KABASELE TSHIANDA Deogracias, OUATTARA Hassan Nadien**
 
 **Groupe C : HAOUCHE El Aline, THAMMAVONG Aliyadeth, FODING MASSAOUOP Alexandra Laure, TEP Noelly**
 
@@ -16,7 +16,7 @@
 
 ## Entrées
 
-Exemple d'entrée : features.json/csv: 
+Exemple d'entrée : features.json/csv:
 
 &#x09;\*Spectre de fréquence (liste de valeurs).
 
@@ -34,7 +34,7 @@ Le but est d'en déduire la nature du signal avec un dégré de certitude à par
 
 ## Sorties:
 
-###### Fichiers livrables pour **GROUPE E: Moncef, Ulrisch, Samia, Zakaria**: 
+###### Fichiers livrables pour **GROUPE E: Moncef, Ulrisch, Samia, Zakaria**:
 
 &#x09;\*Code Python extract\_from\_signal.py pour le traitement avancé
 
@@ -46,13 +46,13 @@ Le but est d'en déduire la nature du signal avec un dégré de certitude à par
 
 ###### Fichiers à ajouter dans le projet final pour le groupe:
 
-**\***Code source commenté et documenté (plusieurs fichiers coordonnés par le document noté dans la description de chaque modules).
+\*\*\*\*\*Code source commenté et documenté (plusieurs fichiers coordonnés par le document noté dans la description de chaque modules).
 
-**\***Fichiers de sortie normalisés (JSON/CSV).
+\*\*\*\*\*Fichiers de sortie normalisés (JSON/CSV).
 
-**\***Scripts de validation OU document d’explication selon groupes.
+\*\*\*\*\*Scripts de validation OU document d’explication selon groupes.
 
-**\***Un README\_X.md expliquant :
+\*\*\*\*\*Un README\_X.md expliquant :
 
 &#x09;Le rôle du module.
 
@@ -62,25 +62,25 @@ Le but est d'en déduire la nature du signal avec un dégré de certitude à par
 
 &#x09;La répartition des tâches effectuée (pas le détail les grandes lignes)
 
-**\***Tout autre document permettant de mieux comprendre le travail fourni
+\*\*\*\*\*Tout autre document permettant de mieux comprendre le travail fourni
 
 
 
 ###### Fichiers livrables par personne:
 
-**\***Historique GIT personnel (pas seulement les commits sur la branche D)
+\*\*\*\*\*Historique GIT personnel (pas seulement les commits sur la branche D)
 
-**\***Historique des interactions IA (cf détails dans le cours)
+\*\*\*\*\*Historique des interactions IA (cf détails dans le cours)
 
-**\***Choix technologiques, difficultés et points d’appui
+\*\*\*\*\*Choix technologiques, difficultés et points d’appui
 
-**\***Avis critique sur son travail
+\*\*\*\*\*Avis critique sur son travail
 
 → Le format est libre pour cette partie.
 
 
 
-## Règles internes au groupe
+## WORKFLOW
 
 ### Entêtes COMMIT:
 
@@ -126,9 +126,19 @@ A mettre impérativement dans chaque commit
 
 
 
+1 Concevoir l’interface avec QtDesigner (fichier .ui).
+
+2 Convertir le fichier .ui en .py avec pyuic5.
+
+3 Développer la logique dans une classe Python (fond).
+
+4 Utiliser Git pour versionner le code et collaborer.
+
+
+
 ### Réglés de code à respecter (noté):
 
-#### Utiliser PEPs 8 "Orthographe du code":
+#### Utiliser PEP 8 / PEP 257 "Orthographe du code":
 
 * Une ligne sautée ne contient pas de caractères (espaces ou autres)
 * La dernière ligne du fichier python est une ligne vide
@@ -143,7 +153,9 @@ Dans Spyder, activez l’analyseur de syntaxe dans :
 
 Outils->Préférences->Complétion et Linting->Onglet « Style du code »
 
-Cochez « Activez le linting de style de code » 
+Cochez « Activez le linting de style de code »
+
+
 
 
 
@@ -177,6 +189,4 @@ Il existe des outils pour générer des documentation complètes.
 
 * Sphinx : extraction, mise en page et génération de pages HTML
 * PyCharm : pré-remplissage du bloc de documentation
-
-
 
