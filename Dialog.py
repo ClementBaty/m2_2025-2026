@@ -20,18 +20,42 @@ class Ui_Dialog(object):
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
-        self.textBrowser_2 = QtWidgets.QTextBrowser(Dialog)
-        self.textBrowser_2.setGeometry(QtCore.QRect(10, 380, 281, 51))
-        self.textBrowser_2.setObjectName("textBrowser_2")
-        self.textBrowser_3 = QtWidgets.QTextBrowser(Dialog)
-        self.textBrowser_3.setGeometry(QtCore.QRect(10, 10, 281, 51))
-        self.textBrowser_3.setObjectName("textBrowser_3")
-        self.lineEdit = QtWidgets.QLineEdit(Dialog)
-        self.lineEdit.setGeometry(QtCore.QRect(40, 90, 321, 20))
-        self.lineEdit.setObjectName("lineEdit")
-        self.pushButton = QtWidgets.QPushButton(Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(370, 90, 41, 21))
-        self.pushButton.setObjectName("pushButton")
+        self.Bullenom = QtWidgets.QTextBrowser(Dialog)
+        self.Bullenom.setGeometry(QtCore.QRect(10, 380, 281, 51))
+        self.Bullenom.setObjectName("Bullenom")
+        self.BulleTitre = QtWidgets.QTextBrowser(Dialog)
+        self.BulleTitre.setGeometry(QtCore.QRect(10, 10, 281, 51))
+        self.BulleTitre.setObjectName("BulleTitre")
+        self.AffichageURL = QtWidgets.QLineEdit(Dialog)
+        self.AffichageURL.setGeometry(QtCore.QRect(40, 90, 511, 20))
+        self.AffichageURL.setObjectName("AffichageURL")
+        self.Boutonparcourir = QtWidgets.QPushButton(Dialog)
+        self.Boutonparcourir.setGeometry(QtCore.QRect(560, 90, 41, 21))
+        self.Boutonparcourir.setObjectName("Boutonparcourir")
+        self.Lien = QtWidgets.QLabel(Dialog)
+        self.Lien.setGeometry(QtCore.QRect(20, 70, 47, 13))
+        self.Lien.setObjectName("Lien")
+        self.Type = QtWidgets.QLabel(Dialog)
+        self.Type.setGeometry(QtCore.QRect(10, 180, 91, 16))
+        self.Type.setObjectName("Type")
+        self.Source = QtWidgets.QLabel(Dialog)
+        self.Source.setGeometry(QtCore.QRect(10, 230, 47, 13))
+        self.Source.setObjectName("Source")
+        self.comboBox_Type = QtWidgets.QComboBox(Dialog)
+        self.comboBox_Type.setGeometry(QtCore.QRect(50, 200, 181, 22))
+        self.comboBox_Type.setObjectName("comboBox_Type")
+        self.comboBox_Type.addItem("")
+        self.comboBox_Type.addItem("")
+        self.comboBox_Type.addItem("")
+        self.comboBox_Type.addItem("")
+        self.comboBox_Source = QtWidgets.QComboBox(Dialog)
+        self.comboBox_Source.setGeometry(QtCore.QRect(50, 250, 181, 22))
+        self.comboBox_Source.setObjectName("comboBox_Source")
+        self.comboBox_Source.addItem("")
+        self.comboBox_Source.addItem("")
+        self.comboBox_Source.addItem("")
+        self.comboBox_Source.addItem("")
+        self.comboBox_Source.addItem("")
 
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept) # type: ignore
@@ -41,17 +65,29 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.textBrowser_2.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.Bullenom.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#ffaa00;\">Classe : M2-3EA</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">Groupe : </span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">BOTTAZZINI ; BETTAOUI ; SILVESTRE ; GRAPIN</span></p></body></html>"))
-        self.textBrowser_3.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BulleTitre.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt; font-weight:600; color:#ffaa00;\">Traitement de signal</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">Partie A : Acquisition du signal</span></p></body></html>"))
-        self.pushButton.setText(_translate("Dialog", "..."))
+        self.Boutonparcourir.setText(_translate("Dialog", "..."))
+        self.Lien.setText(_translate("Dialog", "Lien :"))
+        self.Type.setText(_translate("Dialog", "Type de Signal :"))
+        self.Source.setText(_translate("Dialog", "Sources :"))
+        self.comboBox_Type.setItemText(0, _translate("Dialog", "Entrer Texte"))
+        self.comboBox_Type.setItemText(1, _translate("Dialog", "Audio"))
+        self.comboBox_Type.setItemText(2, _translate("Dialog", "Vidéo"))
+        self.comboBox_Type.setItemText(3, _translate("Dialog", "Image"))
+        self.comboBox_Source.setItemText(0, _translate("Dialog", "Entrer Texte"))
+        self.comboBox_Source.setItemText(1, _translate("Dialog", "Microphone"))
+        self.comboBox_Source.setItemText(2, _translate("Dialog", "Capteurs"))
+        self.comboBox_Source.setItemText(3, _translate("Dialog", "Caméra"))
+        self.comboBox_Source.setItemText(4, _translate("Dialog", "Fichier"))
