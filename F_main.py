@@ -1,43 +1,56 @@
-from PyQt5.QtWidgets import QApplication, QFileDialog
+from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow
 import sys
-
 import F_extracteur_de_Donnee
-from F_extracteur_de_Donnee import *
-
-from PyQt5.QtWidgets import QApplication, QFileDialog
-import sys
+from PyQt5.uic import loadUi
 
 
-def choose_files_csv_json_pyqt5():
-    """
-    Ouvre une fenêtre de sélection.
-    Le fichier sélectionné doit être un fichier CSV ou JSON.
+class Fenetre(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        loadUi(r"F_Ui\F_Interface_1.ui", self)
 
-    Retourne :
-        str : chemin du fichier sélectionné
-    """
+        self.url_bouton.clicked.connect(self.choose_files_csv_json_pyqt5)
 
-    # Création de l'application si elle n'existe pas
-    app = QApplication.instance()
+        self.chemin = None
+        self.fichier = None
+        """
+        if self.chemin is not None:
+            self.fichier = F_extracteur_de_Donnee.Donnee(self.chemin)
+            pass
+        if self.fichier.existe:
+            print("Fichier valide")
+        else:
+            print("Fichier non valide")
+        """
+    def action_bouton(self):
+        print("Bouton cliqué")
 
-    if app is None:
-        app = QApplication(sys.argv)
+    def choose_files_csv_json_pyqt5(self):
+        """
+        Ouvre une fenêtre de sélection.
+        Le fichier sélectionné doit être un fichier CSV ou JSON.
 
-    file_path, _ = QFileDialog.getOpenFileName(
-        None,
-        "Sélectionner un fichier",
-        "",
-        "Fichiers JSON ou CSV (*.json *.csv)"
-    )
+        Retourne :
+            str : chemin du fichier sélectionné
+        """
 
-    return file_path
+        # Création de l'application si elle n'existe pas
+        app = QApplication.instance()
+
+        if app is None:
+            app = QApplication(sys.argv)
+
+        file_path, _ = QFileDialog.getOpenFileName(
+            None,
+            "Sélectionner un fichier",
+            "",
+            "Fichiers JSON ou CSV (*.json *.csv)"
+        )
+
+        return file_path
 
 
-chemin = None
-
-#if buton_setting_path.push():
-chemin = choose_files_csv_json_pyqt5()
-
-if chemin is not None:
-    F_extracteur_de_Donnee.Donnee(chemin)
-    pass
+app = QApplication(sys.argv)
+fenetre = Fenetre()
+fenetre.show()
+sys.exit(app.exec_())
