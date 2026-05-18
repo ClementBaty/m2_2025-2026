@@ -38,3 +38,4 @@ class Fenetregraphique(QMainWindow):
         self.F_info_text.appendPlainText(
             "Test : le bouton Exporter fonctionne."
         )
+

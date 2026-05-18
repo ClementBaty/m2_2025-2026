@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow
 from PyQt5.uic import loadUi
+from pathlib import Path
 import sys
 
 from F_extracteur_de_Donnee import Donnee
@@ -9,27 +10,20 @@ class FenetrePrincipale(QMainWindow):
     def __init__(self):
         super().__init__()
         loadUi(r"F_Ui\F_Interface_1.ui", self)
-
+        # self.F_quit_button.clicked.connect(self.close)
         self.fenetreGraphique = Fenetregraphique()
 
-        self.chemin = "test"
-        self.fichier = None
+        self.chemin = "analysis.json"
+        self.verif_url()
 
         self.url_input.setText(self.chemin)
-
         self.url_bouton.clicked.connect(self.choose_files_csv_json_pyqt5)
         self.affichage_graph.clicked.connect(self.graph)
-        #self.F_quit_button.clicked.connect(self.close)
 
-        """
-        if self.chemin is not None:
-            self.fichier = F_extracteur_de_Donnee.Donnee(self.chemin)
-            pass
-        if self.fichier.existe:
-            print("Fichier valide")
-        else:
-            print("Fichier non valide")
-        """
+
+        self.url_input.editingFinished.connect(self.verif_url)
+
+
     def action_bouton(self):
         print("Bouton cliqué")
 
@@ -41,13 +35,6 @@ class FenetrePrincipale(QMainWindow):
         Retourne :
             str : chemin du fichier sélectionné
         """
-
-        # Création de l'application si elle n'existe pas
-        app = QApplication.instance()
-
-        if app is None:
-            app = QApplication(sys.argv)
-
         file_path, _ = QFileDialog.getOpenFileName(
             None,
             "Sélectionner un fichier",
@@ -57,9 +44,19 @@ class FenetrePrincipale(QMainWindow):
 
         self.chemin = file_path
         self.url_input.setText(self.chemin)
+        self.verif_url()
+
     def graph(self):
 
         self.fenetreGraphique.show()
+
+    def verif_url(self):
+        self.fichier = Path(self.url_input.text())
+        if self.fichier.exists():
+            self.voy_url.setStyleSheet("background-color: rgb(0, 255, 0);")
+        else:
+            self.voy_url.setStyleSheet("background-color: rgb(255, 0, 0);")
+
 
 
 app = QApplication(sys.argv)
