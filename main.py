@@ -21,3 +21,15 @@ Livrables:
 
 import random
 import os
+import pandas as pd
+
+class File():
+    """
+    Classe du fichier caracterisé par son type, accuracy
+    """
+    def __init__(self, cls_type, cls_accuracy):
+        self.type = cls_type
+        self.accuracy = cls_accuracy
+        print(self.type, "a été ajoute avec une accuracy de ", self.accuracy)
+
+
