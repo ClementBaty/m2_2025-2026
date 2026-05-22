@@ -33,3 +33,10 @@ class File():
         print(self.type, "a été ajoute avec une accuracy de ", self.accuracy)
 
 
+intern = File("audio", 0.95)
+
+# Create sample data
+df = pd.DataFrame({'File_Type': [intern.type], 'Accuracy': [intern.accuracy]})
+
+# Export to CSV
+df.to_csv('processed_data.csv', index=False)
