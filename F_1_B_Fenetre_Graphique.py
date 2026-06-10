@@ -20,6 +20,9 @@ class Fenetregraphique(COMMONCLASS):
         self.F_info_text.setPlainText("Fenêtre graphique ouverte.")
 
     def showEvent(self, event):
+        """
+        détécte l'affichage de l'écran puis executes les fonction voulues a l'affichage ex : reffrech,...
+        """
         super().showEvent(event)
         print("La fenêtre GRAPHIQUE vient d'être affichée")
 

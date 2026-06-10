@@ -23,6 +23,9 @@ class FenetrePrincipale(COMMONCLASS):
         self.init_voyant(self.voy_url)
 
     def showEvent(self, event):
+        """
+        détécte l'affichage de l'écran puis executes les fonction voulues a l'affichage ex : reffrech,...
+        """
         super().showEvent(event)
         print("La fenêtre PRINCIPAL vient d'être affichée")
 
