@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow
 import sys
 from PyQt5.uic import loadUi
 
-from F_FenetreGraphique import Fenetregraphique
+from F_1_B_Fenetre_Graphique import Fenetregraphique
 from pathlib import Path
 class FenetrePrincipale(QMainWindow):
     def __init__(self):
