@@ -14,7 +14,7 @@ class FenetrePrincipale(COMMONCLASS):
         # self.F_quit_button.clicked.connect(self.close)
         self.fenetreGraphique = Fenetregraphique()
 
-        self.chemin = "analysis.json"
+        self.chemin = "analysis.csv"
         self.verif_url()
 
         self.url_input.setText(self.chemin)
