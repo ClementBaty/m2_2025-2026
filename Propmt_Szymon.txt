@@ -1,0 +1,344 @@
+Szymon:
+Check this prompt and ask for necessary corrections and missing elements. The goal it to make the most effective prompt to generate the most accurate code with given scenario. If there is any information conflict or missing content, ask for it.  
+There is an univ project to write a program that allows to "guess" what type of file is being charged based on raw data from the file.
+We have 6 groups in the class, each responsible of a part of the whole program.
+Our group is the 4th. We have to write python code to interprate raw values issued from an unknown file. The informations given about the file by the previous group is a .csv file that shows following values, based on the raw signal: sample_id,fft_magnitude_0,fft_magnitude_1,fft_magnitude_2,fft_frequency_0,fft_frequency_1,fft_frequency_2,spectral_centroid,mean,std_dev,kurtosis,skewness,rms,peak_index_0,peak_index_1,peak_index_2,peak_amplitude_0,peak_amplitude_1,peak_amplitude_2. The type of data send by the other group can be changed so our code needs to be easly adaptable.
+To manage our part, we wanted to create some sort of "database" charged with known files, so it's gonna be easly comparable between known files characteristics and our unknown .csv file.
+I thought about making a 'DATABASE' sub-folder to the main file. Inside of it I wanted to make other sub-folders with names corresponding to the possible file types like 'AUDIO', 'VIDEO', 'NOISE'... These flders will be filled with processed data which file types are known. These files will constitue a comparative file 'REFERENCE' with 2 main indicators extracted.
+Then, a 'SAMPLE' sub-folder to the main application will contant 'features.csv' file that indicators needs to be compared to the 'REFERENCE' file. The comparision must be as simple as possible, sort of KNN. The output file must be 'processed_data.csv' giving the file type extracted from the folder and the confidence attached.
+To make it easy to use, we have to make an UI using PyQt5. The window will have two tabs: Home and Database.
+Home Tab has to have the two tabs in the top left corner to choose from to easly swap batween Home and Database window.
+By default, the loaded patch to the file to test will be the 'features.csv' file that is in the 'SAMPLE' sub-folder to the main application. Nevertheless, the user can click the Button 'BROWSEE' to choose another file from the disk. The window will indicate the "Sample to test: --Path to the file--"
+In the middle there will be a 'TEST' button that will start the comparing procedure.
+The result of the comparision will be shown below the button as following: 
+"File type: --FILE_TYPE--"
+"Confidence: --Confidence from 0.00 to 1.00--". After the comparision was succesful, the user shall be informed of it by a pop-up window with an 'OK' button allowing to close the pop-up.
+Even lower, there will be an export results button, allowing to export a 'processed_data.csv' file containing the following informations: "sample_id,label,confidence,mean,std_dev,kurtosis,skewness,rms,dominant_frequency_hz,energy" into the root folder of the application. After the succesful export, a pop-up window will apper informing of the succesfull export, otherwise an error po-pup window shall appear. Both pop-ups should have an 'OK' button allowing to exit the pop-up window.
+The other 'Database' tab will allow the user to load others 'features' from the disk. There will be a roll-down list allowing to choose the file type from taken from one of the sub-filder names of the 'DATABASE' folder. The user might also want to add another category of file type. To do so, the user can type a type file into the text box, with an 'ADD FILE TYPE' button next to it.
+The button adds a sub-folder to the 'DATABASE' folder with UPPERCASE name. Its name will be limited to 10 caracters. If the name is too long, a pop-up window shall apear with the error explaining 'The name is limited to 10 caracters', if the folder is added succesfully, another windopw should appear informing 'File type add succesful!'.
+The newly generated folder name sgould apear in the roll-down list so the user can choose it to add it's new file to it. The number of the sub-folders to the 'DATABASE' containing folders with file type names should be limited to 7. If this value is acheived, the 'ADD FILE TYPE' should be greyed out and impossible to press. A small comment below should indicate that the maximum limit of 7 type files have been acheived. 
+Finally, a 'LOAD' button should be added so the user can add the choosen 'features.csv' file to a given database category.
+
+SONNET 4.6 Effort: 'Elevée':
+
+I've read through your prompt carefully. It's well-structured overall, but there are several ambiguities, conflicts, and missing elements I need to clarify before this can generate accurate, complete code. Here are my questions grouped by theme:
+
+🗂️ Database & Reference File
+
+You mention extracting "2 main indicators" from the known files to build a REFERENCE file — but you never specify which 2 indicators those are. Which columns from the CSV should be used as the reference indicators? Or should all features be used for KNN comparison?
+What is the exact format/structure of the REFERENCE file? Is it one global file, or one per category folder (e.g. DATABASE/AUDIO/reference.csv)? How is it updated when a new file is loaded via the Database tab?
+When a user clicks LOAD in the Database tab, what exactly happens?
+
+Does the loaded features.csv get copied into the chosen category subfolder?
+Does it update/rebuild the reference file automatically?
+Can multiple files be loaded per category, or only one?
+
+
+
+
+🔬 KNN & Comparison Logic
+
+The KNN comparison is between the SAMPLE/features.csv and the REFERENCE file. But the input CSV has columns like fft_magnitude_0, fft_frequency_0, peak_index_0, etc., while the export output asks for columns like dominant_frequency_hz and energy — which don't appear in the input. How should these be derived or computed?
+For the KNN: what value of K should be used? Should it be hardcoded, configurable, or auto-determined?
+How should confidence be calculated? (e.g. proportion of K neighbors belonging to the winning class, a distance-based score, etc.)
+
+
+📄 Export File (processed_data.csv)
+
+The export contains sample_id — but if the user browses a custom file (not the default features.csv), where does the sample_id come from? Is it taken from the file itself, auto-generated, or entered by the user?
+The export columns include mean, std_dev, kurtosis, skewness, rms, dominant_frequency_hz, energy. Some of these (mean, std_dev, etc.) are present in the input CSV, but dominant_frequency_hz and energy are not. Should the code compute these from the raw FFT columns? If yes, how exactly — e.g. is dominant_frequency_hz the frequency at the highest FFT magnitude?
+
+
+🖥️ UI / PyQt5
+
+The tab placement description says "two tabs in the top left corner" — do you mean a standard QTabWidget positioned at the top of the window, or literally a widget anchored to the top-left? A standard tab bar is fine?
+You mention a "BROWSEE" button (likely a typo for "BROWSE") — confirming this is just a file picker?
+On the Home tab, the result fields ("File type" and "Confidence") — should they be hidden/greyed out before a test is run, or just empty?
+Should the "Export Results" button be disabled/greyed out until a test has been successfully run?
+
+
+📁 File & Folder Structure
+
+Where exactly is the "root folder of the application"? Is it the directory where the Python script (main.py) lives? Or a user-chosen directory?
+When the app starts for the first time and DATABASE/ or SAMPLE/ folders don't exist yet — should the app create them automatically, or show an error?
+The 7-subfolder limit for DATABASE — does this count only type folders (like AUDIO, VIDEO) or any folder inside DATABASE?
+
+
+🔌 Adaptability
+
+You mention "the type of data sent by the other group can be changed so our code needs to be easily adaptable." Concretely, what does adaptability mean here?
+
+
+A config file listing which columns to use?
+A dynamic column detection system from the CSV header?
+Something else?
+
+
+Once you answer these, the prompt will be complete and unambiguous enough to generate reliable, accurate code. Feel free to answer all at once or skip any you don't have a decision on yet — I can flag those as assumptions in the final prompt.
+
+Szymon:
+
+
+
+
+
+1. I mentioned 2 main indicators to keep the comparison as easy to understand as possible. Depending on the file types loaded, the indicators might change. We need to test a bunch of them to drag the 2-3 most interesting ones to compare. You can structure the 'REFERENCE' csv file as you want. Every column except the first one should be used to compute the indicators. Every 'feature.csv' file should be used for KNN comparison. 
+2. This is the point where I'm asking the same question. I think the single 'REFERENCE' file in the root of 'DATABASE' will be the easiest to manage. 
+3. As the user press 'LOAD' button in  'DATABASE' tab, the 'features.csv' should be copied with an index number in front of it, so no conflicts between other files will occur, for instance '1features.csv', '2features.csv', '3features.csv'. It should rebuild the reference file automatically. Multiple files can be loaded to a single category, copy them and add a coresponding index. 
+4. For the output file, all of the export data should be computed if possible to make it possible to export. 
+5. K = 5 + (number of loaded database files/10) rounded down for this application should be used. If there are less than 5 files in the database, we compate to then anyways, worst case scenario the confidence would drop to .8 or .6. Not a problem for today.
+6. KNN should be calculated on the proportion of the K nearest neighbors based on the winning file type.
+7. By 'custom file' I mean a 'features.csv' file that is in another location than 'DATABASE' subfolders.
+8. I retreat from this idea. Simply compy the existing columns from the input file: mean, std_dev, kurtosis, skewness, rms, dominant_frequency_hz, energy.
+9. Yes, I mean a standart QTabWidget
+10. Yes it was a typo. make a 'BROWSE' button.
+11. Make them greyed out before the test is ran.
+12. Yes, the 'EXPORT RESULTS' button should be disabled before the test run.
+13. Root is considered the directory where the Python script (main.py) lives
+14. Let the app create these folders if they do not exist in the first place as the script is run.
+15. 7 subfolder limit is the limit of the type files, so AUDIO, VIDEO, NOISE... Keep this number easy to change if nevertheless I gonna need mode room.
+16. Do come sort of a list, easly editable but accesible by the whole script where I can simply type the columns to consider in my indicator extraction.
+
+
+
+SONNET 4.6 Effort: 'Elevée':
+
+# Prompt — Group 4: File Type Classifier (PyQt5 + KNN)
+
+---
+
+## Context
+
+This is part of a university group project. Six groups collaborate to build a program
+that identifies an unknown file's type from its raw signal data.
+
+**Group 4's role:** receive a processed `features.csv` file from Group 3 (which
+extracts signal features from the raw file), classify it using KNN against a local
+reference database, display the result in a GUI, and export a result CSV.
+
+---
+
+## Tech Stack
+
+- **Language:** Python 3
+- **GUI:** PyQt5
+- **Data handling:** pandas, numpy, scikit-learn (KNeighborsClassifier or manual KNN)
+- **No other major dependencies**
+
+---
+
+## Folder Structure (auto-created on first run if missing)
+
+```
+main.py                     ← root of the application
+SAMPLE/
+    features.csv            ← default input file to classify
+DATABASE/
+    AUDIO/                  ← example category subfolder
+    VIDEO/
+    NOISE/
+    reference.csv           ← single global reference file, auto-rebuilt
+```
+
+- All folders (`SAMPLE/`, `DATABASE/`, and any category subfolders like `AUDIO/`)
+  are created automatically when `main.py` is first executed if they do not exist.
+- `DATABASE/` contains at most **MAX_CATEGORIES = 7** category subfolders
+  (this constant must be defined at the top of the file, easy to change).
+- Each category subfolder stores indexed copies of loaded `features.csv` files:
+  `1features.csv`, `2features.csv`, `3features.csv`, … (index is a sequential
+  integer, no gaps required, just unique).
+- `DATABASE/reference.csv` is a single flat CSV rebuilt every time a new file is
+  loaded. It aggregates all rows from all category subfolders, adding a `label`
+  column whose value is the name of the category subfolder (e.g. `AUDIO`).
+
+---
+
+## Feature Columns Configuration
+
+At the top of `main.py`, define a list:
+
+```python
+FEATURE_COLUMNS = [
+    "fft_magnitude_0", "fft_magnitude_1", "fft_magnitude_2",
+    "fft_frequency_0", "fft_frequency_1", "fft_frequency_2",
+    "spectral_centroid", "mean", "std_dev", "kurtosis",
+    "skewness", "rms",
+    "peak_index_0", "peak_index_1", "peak_index_2",
+    "peak_amplitude_0", "peak_amplitude_1", "peak_amplitude_2"
+]
+```
+
+This list is the **single source of truth** for which columns are used in KNN
+comparisons and for building the reference. If Group 3 changes their output
+columns, only this list needs updating. `sample_id` is always excluded from
+computation (it is a row identifier only).
+
+---
+
+## Reference File (`DATABASE/reference.csv`)
+
+Structure:
+```
+label, <all columns from FEATURE_COLUMNS>
+```
+
+- `label` is the category name (folder name, uppercase).
+- Built by scanning all category subfolders in `DATABASE/`, reading every
+  indexed `features.csv` file found, appending a `label` column, and
+  concatenating all rows.
+- Rebuilt from scratch every time a new file is loaded via the Database tab.
+- If no reference data exists yet, the reference file is empty (header only).
+
+---
+
+## KNN Classification Logic
+
+- **Distance metric:** Euclidean distance over all `FEATURE_COLUMNS` present in
+  both the sample and the reference (columns missing from either side are dropped
+  gracefully with a warning print).
+- **K formula:**
+  ```
+  K = 5 + floor(total_database_files / 10)
+  ```
+  where `total_database_files` is the count of all indexed `features.csv` files
+  across all category subfolders.
+- **Minimum K = 1.** If fewer than K files exist in the database, use however
+  many exist (no crash). This will reduce confidence naturally.
+- **Confidence** = proportion of the K nearest neighbors belonging to the
+  winning label. Example: if K=5 and 3 neighbors are `AUDIO`, confidence = 0.60.
+- The sample to classify is the **first row** of the loaded `features.csv` file.
+  If the file has multiple rows, only the first is used (print a warning).
+- Normalize all feature columns with StandardScaler fitted on the reference data
+  before computing distances.
+
+---
+
+## Export File (`processed_data.csv`)
+
+Saved to the root of the application (same folder as `main.py`).
+
+Columns:
+```
+sample_id, label, confidence, mean, std_dev, kurtosis, skewness, rms,
+dominant_frequency_hz, energy
+```
+
+- `sample_id`: taken directly from the `sample_id` column of the input
+  `features.csv`. If the column is absent, use the filename as the id.
+- `label`: classification result (e.g. `AUDIO`).
+- `confidence`: float rounded to 2 decimal places (0.00–1.00).
+- `mean`, `std_dev`, `kurtosis`, `skewness`, `rms`: copied directly from
+  the input file if present; `NaN` if absent.
+- `dominant_frequency_hz`: the `fft_frequency_X` value (X = 0, 1, or 2)
+  corresponding to the highest `fft_magnitude_X` in the same row. If FFT
+  columns are absent, `NaN`.
+- `energy`: computed as `sum(fft_magnitude_i ** 2)` for all available
+  `fft_magnitude_X` columns. If absent, `NaN`.
+
+---
+
+## GUI — PyQt5, Two Tabs
+
+### General
+
+- Main window title: `"File Type Classifier — Group 4"`
+- Fixed or minimum size: 600×500 px.
+- A standard `QTabWidget` is placed at the top of the main window, containing
+  two tabs: **Home** and **Database**.
+
+---
+
+### Tab 1 — Home
+
+**Top area — File selection:**
+- Label: `"Sample to test:"` followed by the current file path.
+- Default path = `<root>/SAMPLE/features.csv`.
+- `BROWSE` button: opens a `QFileDialog` (filter: `CSV files (*.csv)`) to let
+  the user pick any CSV file from disk. Updates the displayed path.
+
+**Middle — Action:**
+- `TEST` button: runs the KNN classification.
+  - Reads the selected CSV.
+  - Normalizes features using the reference.
+  - Runs KNN.
+  - On success: updates result labels and shows a `QMessageBox` with message
+    `"Classification successful!"` and an `OK` button.
+  - On failure (e.g. reference empty, file not found): shows an error
+    `QMessageBox` with a descriptive message and an `OK` button.
+
+**Below TEST button — Results (greyed out / disabled until TEST succeeds):**
+- Label: `"File type: ——"` → updated to `"File type: AUDIO"` (example).
+- Label: `"Confidence: ——"` → updated to `"Confidence: 0.80"` (example).
+
+**Bottom — Export:**
+- `EXPORT RESULTS` button: disabled until TEST has succeeded at least once.
+  - On click: writes `processed_data.csv` to the root folder.
+  - On success: `QMessageBox` — `"Export successful!"` + `OK`.
+  - On failure: `QMessageBox` — `"Export failed: <error message>"` + `OK`.
+
+---
+
+### Tab 2 — Database
+
+**File type selector:**
+- `QComboBox` (dropdown): populated with the names of existing subfolders in
+  `DATABASE/`. Refreshed every time the tab is shown (or a new type is added).
+
+**Add new file type:**
+- `QLineEdit` (text input, max 10 characters enforced in UI).
+- `ADD FILE TYPE` button next to it:
+  - Trims and uppercases the input.
+  - Validates length ≤ 10 characters; if longer: `QMessageBox` error —
+    `"The name is limited to 10 characters."` + `OK`.
+  - Creates `DATABASE/<NAME>/` subfolder.
+  - On success: `QMessageBox` — `"File type added successfully!"` + `OK`.
+    Refreshes the dropdown.
+  - If `MAX_CATEGORIES = 7` subfolders already exist:
+    - `ADD FILE TYPE` button is **greyed out and disabled**.
+    - A small label below it reads:
+      `"Maximum limit of 7 file types reached."` (this number must be read
+      from `MAX_CATEGORIES` so it updates automatically if the constant changes).
+
+**Load file into category:**
+- `LOAD` button:
+  - Opens a `QFileDialog` (filter: `CSV files (*.csv)`) to pick a `features.csv`
+    from anywhere on disk.
+  - Copies the file into `DATABASE/<selected_category>/` with an auto-incremented
+    index prefix: `1features.csv`, `2features.csv`, etc. The index is determined
+    by counting existing files in the folder and adding 1.
+  - Rebuilds `DATABASE/reference.csv` from all category subfolders.
+  - Shows a `QMessageBox` — `"File loaded and reference updated!"` + `OK`.
+  - If no category is selected or the dropdown is empty: error `QMessageBox` —
+    `"Please select or create a file type first."` + `OK`.
+
+---
+
+## Code Structure Requirements
+
+- All code in a **single `main.py`** file.
+- Top of file must contain all user-configurable constants:
+  ```python
+  MAX_CATEGORIES = 7          # maximum number of type folders in DATABASE/
+  FEATURE_COLUMNS = [...]     # columns used for KNN (edit to adapt to new input)
+  ```
+- Functions must be clearly separated:
+  - `build_reference()` — scans DATABASE, rebuilds reference.csv
+  - `classify_sample(filepath)` → returns `(label, confidence)`
+  - `export_results(filepath, label, confidence)` — writes processed_data.csv
+  - `get_category_folders()` → returns list of existing category folder names
+- PyQt5 `MainWindow` class with `HomeTab` and `DatabaseTab` as separate
+  `QWidget` subclasses for readability.
+- Entry point: `if __name__ == "__main__":` block at the bottom.
+
+---
+
+## Edge Cases to Handle
+
+| Situation | Behaviour |
+|---|---|
+| `SAMPLE/features.csv` does not exist at startup | Path is shown as default but no error yet; error shown only when TEST is clicked |
+| `DATABASE/reference.csv` is empty or missing | TEST shows error: `"Database is empty. Please load reference files first."` |
+| Selected CSV is missing expected feature columns | Warning printed to console; missing columns filled with 0 for KNN |
+| Fewer database files than K | Use however many exist; confidence may be low |
+| Duplicate category folder name entered | `os.makedirs` with `exist_ok=True`; show success anyway (folder already exists) |
+| `processed_data.csv` already exists in root | Overwrite silently |
