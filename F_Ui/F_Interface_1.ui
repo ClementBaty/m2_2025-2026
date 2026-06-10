@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>1170</width>
     <height>685</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
    <widget class="QToolButton" name="url_bouton">
     <property name="geometry">
      <rect>
-      <x>720</x>
+      <x>910</x>
       <y>50</y>
       <width>25</width>
       <height>19</height>
@@ -30,17 +30,17 @@
    <widget class="QListWidget" name="display_E">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>100</y>
-      <width>301</width>
-      <height>441</height>
+      <x>220</x>
+      <y>210</y>
+      <width>721</width>
+      <height>261</height>
      </rect>
     </property>
    </widget>
    <widget class="QLineEdit" name="url_input">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>250</x>
       <y>50</y>
       <width>651</width>
       <height>20</height>
@@ -50,8 +50,8 @@
    <widget class="QPushButton" name="affichage_graph">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>550</y>
+      <x>430</x>
+      <y>180</y>
       <width>281</width>
       <height>23</height>
      </rect>
@@ -63,85 +63,20 @@
    <widget class="QGroupBox" name="group_Analyse">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>150</y>
-      <width>351</width>
-      <height>331</height>
+      <x>220</x>
+      <y>110</y>
+      <width>451</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="title">
      <string>Détails de l'analyse</string>
     </property>
-    <widget class="QLineEdit" name="donnee_1">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>40</y>
-       <width>281</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="donnee_2">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>100</y>
-       <width>281</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="donnee_3">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>160</y>
-       <width>281</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="donnee_4">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>220</y>
-       <width>281</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="donnee_5">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>280</y>
-       <width>281</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
     <widget class="QLabel" name="LED_1">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>40</y>
+       <x>420</x>
+       <y>30</y>
        <width>20</width>
        <height>20</height>
       </rect>
@@ -167,132 +102,38 @@ border: 1px solid black;</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="LED_2">
+    <widget class="QLabel" name="label">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>100</y>
-       <width>20</width>
-       <height>20</height>
+       <x>9</x>
+       <y>30</y>
+       <width>47</width>
+       <height>16</height>
       </rect>
      </property>
-     <property name="minimumSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: gray; 
-border-radius: 10px; 
-border: 1px solid black;</string>
-     </property>
      <property name="text">
-      <string/>
+      <string>TextLabel</string>
      </property>
     </widget>
-    <widget class="QLabel" name="LED_3">
+    <widget class="QComboBox" name="comboBox">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>160</y>
-       <width>20</width>
+       <x>95</x>
+       <y>30</y>
+       <width>311</width>
        <height>20</height>
       </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: gray; 
-border-radius: 10px; 
-border: 1px solid black;</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="LED_4">
-     <property name="geometry">
-      <rect>
-       <x>310</x>
-       <y>220</y>
-       <width>20</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: gray; 
-border-radius: 10px; 
-border: 1px solid black;</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="LED_5">
-     <property name="geometry">
-      <rect>
-       <x>310</x>
-       <y>280</y>
-       <width>20</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: gray; 
-border-radius: 10px; 
-border: 1px solid black;</string>
-     </property>
-     <property name="text">
-      <string/>
      </property>
     </widget>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>80</y>
+      <x>120</x>
+      <y>190</y>
       <width>301</width>
       <height>20</height>
      </rect>
@@ -310,7 +151,7 @@ border: 1px solid black;</string>
    <widget class="QLabel" name="voy_url">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>220</x>
       <y>50</y>
       <width>20</width>
       <height>20</height>
@@ -343,8 +184,8 @@ border: 1px solid black;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>26</height>
+     <width>1170</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
