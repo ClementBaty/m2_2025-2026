@@ -1,0 +1,8 @@
+metric,value
+total_samples,1000
+audio_samples,750
+noise_samples,250
+mean_confidence,0.92
+std_confidence,0.05
+class_distribution_audio,0.75
+class_distribution_noise,0.25
