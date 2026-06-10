@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import csv
 
 class Donnee:
     def __init__(self, chemin):
@@ -18,16 +19,15 @@ class Donnee:
             self.convertir_json_to_list()
 
     def convertir_csv_to_list(self):
-        pass
+        with open(self.fichier) as f:
+            lecteur = csv.DictReader(f)
+            self.donnees = []
+
+            for point in lecteur:
+                self.donnees.append(point)
 
     def convertir_json_to_list(self):
-        with open(self.fichier) as f:
-            donnee = json.load(f)
-        self.temps = []
-        self.signal = []
         
-        for point in donnee:
-        
-            self.temps.append(point['temps_s'])
-            self.signal.append(point['signal'])
+       with open(self.fichier) as f:
+            self.donnees = json.load(f)
         

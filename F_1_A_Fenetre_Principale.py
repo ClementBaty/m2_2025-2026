@@ -9,14 +9,10 @@ class FenetrePrincipale(COMMONCLASS):
         super().__init__()
         loadUi(r"F_Ui\F_Interface_1.ui", self)
         self.comon_var = comon_var
-        print(self.comon_var)
         self.affichage_graph.clicked.connect(lambda: self.go_to("graphique"))
-
 
         self.url_input.setText(self.comon_var.chemin)
         self.url_bouton.clicked.connect(self.choose_files_csv_json_pyqt5)
-
-
 
         self.url_input.editingFinished.connect(self.verif_chemin)
 
@@ -28,6 +24,7 @@ class FenetrePrincipale(COMMONCLASS):
         """
         super().showEvent(event)
         print("La fenêtre PRINCIPAL vient d'être affichée")
+        self.verif_chemin()
 
     def action_bouton(self):
         print("Bouton cliqué")
@@ -58,5 +55,6 @@ class FenetrePrincipale(COMMONCLASS):
             self.extraction_data(self.fichier)
         else:
             self.set_voyant_color(self.voy_url, "red")
+            self.comon_var.analysis_init()
     def extraction_data(self,fichier):
         pass
