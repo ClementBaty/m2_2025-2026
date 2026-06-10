@@ -1,29 +1,33 @@
-from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow
+from PyQt5.QtWidgets import QFileDialog
 from PyQt5.uic import loadUi
-
-from F_1___Common_Structure import COMMONCLASS
-from F_1_B_Fenetre_Graphique import Fenetregraphique
-
 from pathlib import Path
 
+from F_1___Common_Structure import COMMONCLASS
 
 class FenetrePrincipale(COMMONCLASS):
-    def __init__(self):
+    def __init__(self,comon_var):
         super().__init__()
         loadUi(r"F_Ui\F_Interface_1.ui", self)
-        # self.F_quit_button.clicked.connect(self.close)
-        self.fenetreGraphique = Fenetregraphique()
+        self.comon_var = comon_var
 
-        self.chemin = "analysis.json"
-        self.verif_url()
+        self.affichage_graph.clicked.connect(lambda: self.go_to("graphique"))
 
-        self.url_input.setText(self.chemin)
+
+        self.url_input.setText(self.comon_var.chemin)
         self.url_bouton.clicked.connect(self.choose_files_csv_json_pyqt5)
-        self.affichage_graph.clicked.connect(self.graph)
 
 
-        self.url_input.editingFinished.connect(self.verif_url)
 
+        self.url_input.editingFinished.connect(self.verif_chemin)
+
+        self.init_voyant(self.voy_url)
+
+    def showEvent(self, event):
+        """
+        détécte l'affichage de l'écran puis executes les fonction voulues a l'affichage ex : reffrech,...
+        """
+        super().showEvent(event)
+        print("La fenêtre PRINCIPAL vient d'être affichée")
 
     def action_bouton(self):
         print("Bouton cliqué")
@@ -45,15 +49,14 @@ class FenetrePrincipale(COMMONCLASS):
 
         self.chemin = file_path
         self.url_input.setText(self.chemin)
-        self.verif_url()
+        self.verif_chemin()
 
-    def graph(self):
-
-        self.fenetreGraphique.show()
-
-    def verif_url(self):
+    def verif_chemin(self):
         self.fichier = Path(self.url_input.text())
         if self.fichier.exists():
-            self.voy_url.setStyleSheet("background-color: rgb(0, 255, 0);")
+            self.set_voyant_color(self.voy_url, "green")
+            self.extraction_data(self.fichier)
         else:
-            self.voy_url.setStyleSheet("background-color: rgb(255, 0, 0);")
+            self.set_voyant_color(self.voy_url, "red")
+    def extraction_data(self,fichier):
+        pass
