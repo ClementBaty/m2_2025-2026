@@ -9,12 +9,19 @@ class Fenetregraphique(COMMONCLASS):
         super().__init__()
 
         loadUi(r"F_Ui\F_graph_window.ui", self)
+
         self.comon_var = comon_var
-        self.F_quit_button.clicked.connect(self.close)
+
+        self.F_quit_button.clicked.connect(lambda: self.go_to("general"))
+
         self.F_refresh_button.clicked.connect(self.test_images)
         self.F_export_button.clicked.connect(self.test_exporter)
 
         self.F_info_text.setPlainText("Fenêtre graphique ouverte.")
+
+    def showEvent(self, event):
+        super().showEvent(event)
+        print("La fenêtre GRAPHIQUE vient d'être affichée")
 
     def test_images(self):
         """
