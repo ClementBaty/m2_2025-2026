@@ -20,7 +20,7 @@ def interface_init():
         "graphique": fenetre2,
     }
 
-    fenetre1.fenetres = fenetre1.fenetres
+    fenetre2.fenetres = fenetre1.fenetres
 
     fenetre1.show()
 
