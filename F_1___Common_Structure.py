@@ -26,3 +26,17 @@ class COMMONCLASS(QMainWindow):
 class COMONVAR:
     def __init__(self):
         self.chemin = "analysis.csv"
+
+        self.analysis_init()
+
+    def analysis_init(self):
+        """
+        Valeur initial pour les variables extraite du fichier analysis
+        """
+        self.sample_id = None
+        self.label = ""
+        self.confidence = 0
+        self.fft_plot_path = ""
+        self.time_series_plot_path = ""
+        self.is_anomaly = None
+        self.anomaly_reason = ""

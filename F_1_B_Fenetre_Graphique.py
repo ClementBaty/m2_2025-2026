@@ -1,15 +1,11 @@
 from PyQt5.QtGui import QPixmap
 from PyQt5.uic import loadUi
 
+from F_1___Common_Structure import COMMONCLASS
 
-<<<<<<< HEAD
-class Fenetregraphique(QMainWindow):
-    def __init__(self):
-=======
 
 class Fenetregraphique(COMMONCLASS):
     def __init__(self,comon_var):
->>>>>>> 9a5eefb3c41af701cb4fd6f10a7c156658ed2c5e
         super().__init__()
 
         loadUi(r"F_Ui\F_graph_window.ui", self)
@@ -32,19 +28,17 @@ class Fenetregraphique(COMMONCLASS):
 
     def test_images(self):
         """
-        Affiche les images de test dans les deux labels.
-        Les labels s'adaptent automatiquement à la taille des images.
+        Affiche des images de test dans les deux zones prévues.
         """
-    
-        image_signal = QPixmap("test_signal.png")
-        image_fft = QPixmap("test_fft.png")
-    
-        self.F_time_signal_label.setPixmap(image_signal)
-        self.F_time_signal_label.adjustSize()
-    
-        self.F_fft_signal_label.setPixmap(image_fft)
-        self.F_fft_signal_label.adjustSize()
-    
+
+        self.F_time_signal_label.setPixmap(
+            QPixmap("test_signal.png")
+        )
+
+        self.F_fft_signal_label.setPixmap(
+            QPixmap("test_fft.png")
+        )
+
         self.F_info_text.appendPlainText(
             "Images de test chargées."
         )

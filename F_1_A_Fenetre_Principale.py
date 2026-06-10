@@ -9,7 +9,7 @@ class FenetrePrincipale(COMMONCLASS):
         super().__init__()
         loadUi(r"F_Ui\F_Interface_1.ui", self)
         self.comon_var = comon_var
-
+        print(self.comon_var)
         self.affichage_graph.clicked.connect(lambda: self.go_to("graphique"))
 
 
