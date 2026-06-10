@@ -242,7 +242,7 @@ p, li { white-space: pre-wrap; }
     <string>Derniere enregistrement :</string>
    </property>
   </widget>
-  <widget class="QLabel" name="Affichage_echantillon_2">
+  <widget class="QLabel" name="Affichage_uptdate">
    <property name="geometry">
     <rect>
      <x>490</x>
