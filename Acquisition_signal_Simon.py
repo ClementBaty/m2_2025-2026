@@ -23,6 +23,19 @@ class Mon_Signal_GrpA:
 
     # ETAPE 1 : EXTRACTION DES DONNEES
     def Acquisition_signal(self, filename):
+        """
+        La fonction Acquisition_signal lit le fichier CSV contenant le signal.
+
+        Paramètres d'entrée :
+        -------
+        filename : str (chemin du fichier + nom du fichier)
+
+        Effets
+        -------
+        On remplit les attributs suivants :
+        - self.t : liste des temps
+        - self.samples : liste des échantillons du signal
+        """
         # On vide les listes au cas où on réutiliserait la fonction
         self.t = []
         self.samples = []
@@ -41,6 +54,20 @@ class Mon_Signal_GrpA:
 
     # ETAPE 2 : TRAITEMENT DES DONNEES POUR CALCULER LES INFORMATIONS DU SIGNAL
     def Traitement_signal(self):
+        """
+        La fonction Traitement_signal traite le signal.
+
+        Paramètres d'entrée :
+        -------
+        Aucun
+
+        Effets
+        -------
+        On remplit les attributs suivants :
+        - self.sample_rate : Fréquence du signal
+        - self.duration : Durée du signal
+        - self.timestamp : Date de traitement du signal
+        """
         # On s'assure qu'il y a au moins 2 points de mesures pour pouvoir faire des calculs
         if len(self.t) >= 2:
             # Taux d'échantillonnage (en Hz)
