@@ -55,6 +55,7 @@ Bonnes pratiques imposées :
 # ============================================================================
 # IMPORTS
 # ============================================================================
+
 import sys
 import csv
 from pathlib import Path
@@ -88,12 +89,12 @@ class MainWindow(Ui_Dialog):
 
     def connexions(self):
         # Connect the .clicked() signal with the .calculate() slot
-        self.Boutonparcourir.clicked.connect(self.calculate)
+        self.Generer.clicked.connect(self.calculate)
 
     def calculate(self):
         # Nom et localisation du fichier à lire
         nom_fichier = "C:\Temp\M2_Progr\m2_2025-2026\Fichier_entree.csv"
-        #nom_fichier = self.AffichageURL.value()
+        #nom_fichier = self.AffichageURL.text()
 
         # On crée un objet "mon_signal" à partir de la classe Mon_Signal_GrpA
         mon_signal = Mon_Signal_GrpA()
@@ -103,6 +104,10 @@ class MainWindow(Ui_Dialog):
 
         # On appelle la méthode de traitement (Etape 2)
         mon_signal.Traitement_signal()
+        
+        # A remplir par Manal
+        mon_signal.type = self.comboBox_Type.currentText()
+        mon_signal.source = self.comboBox_Source.currentText()
         
         # AFFICHAGE POUR VERIFIER QUE TOUT FONCTIONNE
         print(" PROPRIÉTÉS DU SIGNAL :")
@@ -209,6 +214,5 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()
     ui = MainWindow(Dialog)
-    ui.setupUi(Dialog)
     Dialog.show()
     sys.exit(app.exec_())
