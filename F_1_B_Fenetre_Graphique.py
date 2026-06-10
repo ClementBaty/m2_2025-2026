@@ -2,8 +2,10 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtGui import QPixmap
 from PyQt5.uic import loadUi
 
+from F_1___Common_Structure import COMMONCLASS
 
-class Fenetregraphique(QMainWindow):
+
+class Fenetregraphique(COMMONCLASS):
     def __init__(self):
         super().__init__()
 

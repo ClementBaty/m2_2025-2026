@@ -1,10 +1,13 @@
 from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow
-import sys
 from PyQt5.uic import loadUi
 
+from F_1___Common_Structure import COMMONCLASS
 from F_1_B_Fenetre_Graphique import Fenetregraphique
+
 from pathlib import Path
-class FenetrePrincipale(QMainWindow):
+
+
+class FenetrePrincipale(COMMONCLASS):
     def __init__(self):
         super().__init__()
         loadUi(r"F_Ui\F_Interface_1.ui", self)
