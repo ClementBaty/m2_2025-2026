@@ -1,4 +1,3 @@
-from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtGui import QPixmap
 from PyQt5.uic import loadUi
 
@@ -6,11 +5,11 @@ from F_1___Common_Structure import COMMONCLASS
 
 
 class Fenetregraphique(COMMONCLASS):
-    def __init__(self):
+    def __init__(self,comon_var):
         super().__init__()
 
         loadUi(r"F_Ui\F_graph_window.ui", self)
-
+        self.comon_var = comon_var
         self.F_quit_button.clicked.connect(self.close)
         self.F_refresh_button.clicked.connect(self.test_images)
         self.F_export_button.clicked.connect(self.test_exporter)

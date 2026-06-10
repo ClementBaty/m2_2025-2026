@@ -1,25 +1,22 @@
-from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow
+from PyQt5.QtWidgets import QFileDialog
 from PyQt5.uic import loadUi
+from pathlib import Path
 
 from F_1___Common_Structure import COMMONCLASS
-from F_1_B_Fenetre_Graphique import Fenetregraphique
-
-from pathlib import Path
 
 
 class FenetrePrincipale(COMMONCLASS):
-    def __init__(self):
+    def __init__(self,comon_var):
         super().__init__()
         loadUi(r"F_Ui\F_Interface_1.ui", self)
-        # self.F_quit_button.clicked.connect(self.close)
-        self.fenetreGraphique = Fenetregraphique()
+        self.comon_var = comon_var
 
-        self.chemin = "analysis.csv"
+
         self.verif_url()
 
-        self.url_input.setText(self.chemin)
+        self.url_input.setText(self.comon_var.chemin)
         self.url_bouton.clicked.connect(self.choose_files_csv_json_pyqt5)
-        self.affichage_graph.clicked.connect(self.graph)
+        self.affichage_graph.clicked.connect(lambda: self.go_to("graphique"))
 
 
         self.url_input.editingFinished.connect(self.verif_url)
