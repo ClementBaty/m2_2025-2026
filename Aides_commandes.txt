@@ -23,3 +23,6 @@ $ git status
 $ git commit -m "modification nom Aides_commandes"
 $ git push
 git add
+
+QT DESIGNER : 
+C:\ProgramData\anaconda3\Library\bin\designer.exe
