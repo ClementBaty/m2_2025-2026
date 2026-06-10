@@ -56,21 +56,6 @@
      <string>Choisir le graphique à afficher</string>
     </property>
    </widget>
-   <widget class="QWidget" name="F_plot_widget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>90</y>
-      <width>321</width>
-      <height>191</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: #f5f5f5;
-border: 1px solid #c0c0c0;
-border-radius: 5px;</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="F_refresh_button">
     <property name="geometry">
      <rect>
@@ -124,6 +109,32 @@ border-radius: 5px;</string>
     </property>
     <property name="plainText">
      <string>Aucun fichier chargé.</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F_time_signal_label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>151</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F_fft_signal_label">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>90</y>
+      <width>151</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
     </property>
    </widget>
   </widget>

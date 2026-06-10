@@ -1,31 +1,35 @@
-from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow
-import sys
+from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtGui import QPixmap
 from PyQt5.uic import loadUi
 
 
 class Fenetregraphique(QMainWindow):
     def __init__(self):
         super().__init__()
+
         loadUi(r"F_Ui\F_graph_window.ui", self)
 
         self.F_quit_button.clicked.connect(self.close)
-
-        # Boutons de test
-        self.F_refresh_button.clicked.connect(self.test_actualiser)
+        self.F_refresh_button.clicked.connect(self.test_images)
         self.F_export_button.clicked.connect(self.test_exporter)
 
-        # Texte affiché au démarrage de la fenêtre graphique
         self.F_info_text.setPlainText("Fenêtre graphique ouverte.")
 
-    def test_actualiser(self):
+    def test_images(self):
         """
-        Test du bouton Actualiser.
+        Affiche des images de test dans les deux zones prévues.
         """
 
-        print("Bouton Actualiser cliqué")
+        self.F_time_signal_label.setPixmap(
+            QPixmap("test_signal.png")
+        )
+
+        self.F_fft_signal_label.setPixmap(
+            QPixmap("test_fft.png")
+        )
 
         self.F_info_text.appendPlainText(
-            "Test : le bouton Actualiser fonctionne."
+            "Images de test chargées."
         )
 
     def test_exporter(self):
@@ -38,4 +42,3 @@ class Fenetregraphique(QMainWindow):
         self.F_info_text.appendPlainText(
             "Test : le bouton Exporter fonctionne."
         )
-
