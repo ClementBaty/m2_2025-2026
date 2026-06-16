@@ -1,0 +1,74 @@
+# Présentation — Groupe D (Traitement et Classification)
+
+**Durée cible : 5 minutes.** Plan calé sur la grille demandée par le prof.
+
+Groupe D : SIDORKIEWICZ Szymon, DIONG Mame, THIAM Sokhna, Ouail Kassa BAGHDOUCHE.
+
+> Cherche les `[À COMPLÉTER]` : les points que vous seuls pouvez remplir.
+
+---
+
+## 1. Présentation de notre partie (~3 min)
+
+### a) Cahier des charges global et notre groupe
+- Le projet : **un seul programme modulaire** découpé en 6 parties (A→F).
+  Chaque groupe transforme le signal puis passe le relais au suivant via un
+  fichier normalisé (JSON/CSV).
+- **Notre rôle (D)** : recevoir les caractéristiques d'un signal (du Groupe C),
+  en **déduire la nature** du signal avec un degré de certitude, et produire
+  le résultat pour le Groupe E.
+
+### b) Technologies utilisées et pourquoi
+- **Python 3** : langage imposé.
+- **PyQt5** (Qt Designer + pyuic5) : interface graphique imposée — Designer
+  pour dessiner l'interface, pyuic5 pour générer le code Python.
+- **pandas** : pour lire/écrire les CSV et JSON échangés entre groupes.
+- **numpy / scipy** : pour les calculs numériques et la génération des données.
+
+### c) Choix de programmation et pourquoi
+- **Programmation orientée objet** : code modulaire, séparé en interface /
+  logique / données.
+- **Classifieur k-NN** : algorithme simple et lisible, adapté à des features
+  numériques étiquetées.
+- **Données d'entraînement synthétiques** : générées pour développer et tester
+  le modèle sans attendre les vraies features du Groupe C (chaque classe a ses
+  propres distributions → classes séparables).
+- Respect de **PEP 8 / PEP 257**.
+
+### d) Répartition du travail
+- Ouail : génération des données d'entraînement (`generate_features.py`).
+- [À COMPLÉTER : qui a fait l'interface, qui le classifieur, qui l'intégration.]
+
+### e) Points d'appui et difficultés
+- **Points d'appui** : [À COMPLÉTER — ex. Qt Designer, pandas, numpy.]
+- **Difficultés** : [À COMPLÉTER — ex. installation de PyQt5 sur Mac,
+  choix de features réellement discriminantes entre audio/image/vidéo.]
+
+---
+
+## 2. Présentation de notre fichier de sortie (~1 min 30)
+
+- **Format** : CSV — `processed_data.csv` (livré au Groupe E).
+- **Champs** :
+  - `sample_id` : identifiant de l'échantillon.
+  - `type` : label de classification prédit (audio / image / vidéo).
+  - `confidence` : degré de certitude dans [0, 1].
+- **Subtilités** : première ligne = en-tête ; une ligne par échantillon classé.
+- *(Données d'entraînement : `features.csv`, 150 échantillons étiquetés,
+  12 features + label.)*
+
+---
+
+## 3. Commentaires (~30 s)
+
+- [À COMPLÉTER : limites du modèle, pistes d'amélioration, ce dont vous êtes
+  fiers.]
+
+---
+
+## Aide-mémoire timing
+| Section | Durée |
+|---|---|
+| 1. Notre partie | ~3 min |
+| 2. Fichier de sortie | ~1 min 30 |
+| 3. Commentaires | ~30 s |
