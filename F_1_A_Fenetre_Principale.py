@@ -3,6 +3,8 @@ from PyQt5.uic import loadUi
 from pathlib import Path
 
 from F_1___Common_Structure import COMMONCLASS
+from F_extracteur_de_Donnee import Donnee
+
 
 class FenetrePrincipale(COMMONCLASS):
     def __init__(self,comon_var):
@@ -56,5 +58,8 @@ class FenetrePrincipale(COMMONCLASS):
         else:
             self.set_voyant_color(self.voy_url, "red")
             self.comon_var.analysis_init()
+            
     def extraction_data(self,fichier):
-        pass
+        d = Donnee(str(fichier))
+        if d.FichierValide:
+            self.comon_var.donnees = d.donnees
