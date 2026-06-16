@@ -170,6 +170,7 @@ def classify_by_rules(filepath: str) -> str:
     --- ADD YOUR RULES BELOW ---
     Read feature values from `row` and return the matching category name.
     Return "UNKNOWN" as the fallback if no rule matches.
+    .csc columns: sample_id, fft_magnitude_0, fft_magnitude_1,f ft_magnitude_2, fft_frequency_0, fft_frequency_1, fft_frequency_2, spectral_centroid, mean,std_dev, kurtosis, skewness, rms,peak_index_0, peak_index_1, peak_index_2, peak_amplitude_0, peak_amplitude_1,peak_amplitude_2
     """
     df = pd.read_csv(filepath)
     if df.empty:
@@ -182,20 +183,66 @@ def classify_by_rules(filepath: str) -> str:
         return float(row[col]) if col in df.columns else default
 
     # ------------------------------------------------------------------
-    # Example thresholds — replace or extend these with your own rules.
+    # Données à utiliser pour le test:
+    # std_dev, kurtosis, pics_irreguliers, R_BH, spectral_centroid, RMS, 
     # ------------------------------------------------------------------
     spectral_centroid = get("spectral_centroid")
     rms               = get("rms")
     mean              = get("mean")
+    kurtosis          = get("kurtosis")
+    std_dev           = get("std_dev")
+    pics_irreguliers  = get("peak_index_0") + get("peak_index_1") + get("peak_index_2")
+    R_BH              = get("rms") / (get("mean") + 1e-8)  # Avoid division by zero
+    skewness          = get("skewness")
 
-    if spectral_centroid > 5000:
-        return "AUDIO"
-    if rms > 0.5:
-        return "VIDEO"
-    if mean < 0.1:
-        return "NOISE"
 
-    return "UNKNOWN"
+    if std_dev < 0.01:  #Signal quasi-plat
+        return "TEST1: IMAGE " + str(std_dev)
+    
+    elif kurtosis > 45:  #Pics rares et trés forts
+        return "TEST2: BRUIT " + str(kurtosis)
+    
+    elif pics_irreguliers > 50000:  #Pics rares et trés forts
+        return "TEST2.5: BRUIT " + str(pics_irreguliers)
+    
+    elif pics_irreguliers >= 5:  #Pics rares et trés forts
+        return "TEST3: BRUIT IMPULSIF " + str(pics_irreguliers)
+    
+    elif pics_irreguliers < 3:
+        return "TEST4: BRUIT PERIODIQUE " + str(pics_irreguliers)
+    
+    elif kurtosis < 3.5 and kurtosis > 2.5 : #Distribution Gausienne
+        return "TEST5: BRUIT BLANC " + str(kurtosis)
+    
+    elif (R_BH <= 1.2 or R_BH >= 0.8):
+        return "TEST5: BRUIT BLANC " + str(R_BH)
+    
+    elif (R_BH > 1.2 or R_BH < 0.8):
+        return "TEST6: BRUIT HAUTE FREQUENCE " + str(R_BH)
+    
+    elif spectral_centroid < 2000:  #Energie dans les frequences <2000Hz
+        return "TEST7: AUDIO " + str(spectral_centroid)
+    
+    elif pics_irreguliers > 3:
+        return "TEST8: AUDIO TONALE " + str(pics_irreguliers)
+    
+    elif pics_irreguliers <= 3:
+        return "TEST9: AUDIO PAROLES " + str(pics_irreguliers)
+    
+    elif rms > 0.3: #Energie globale élévée
+        return "TEST10: VIDEO " + str(rms)
+    
+    elif std_dev > 0.2: #Variation importante
+        return "TEST11: VIDEO " + str(std_dev)
+    
+    elif std_dev <= 0.2: #Variation faible
+        return "TEST12: SIGNAL PONCTUEL " + str(std_dev)
+    
+    elif skewness > 1.0: #Asymétrie positive/signal saturé
+        return "TEST13: SIGNAL SATURÉ " + str(skewness)
+    
+    else:
+        return "TEST14: SIGNAL INCONNU"
 
 
 def export_results(filepath: str, label: str, confidence: float) -> None:

@@ -1,0 +1,2 @@
+sample_id,label,confidence,mean,std_dev,kurtosis,skewness,rms,dominant_frequency_hz,energy
+0.0,BRUIT,1.0,0.950137,0.033931,7.121,-1.9011,0.950742,0.0,1.00022685
