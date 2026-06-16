@@ -1,0 +1,5 @@
+sample_id,label,confidence,mean,std_dev,kurtosis,skewness,rms,dominant_frequency_hz,energy
+0,audio,0.95,0.0001,0.12,3.2,0.05,0.08,440.0,0.08
+1,audio,0.92,0.0002,0.11,3.1,0.04,0.07,440.0,0.07
+2,noise,0.88,0.0003,0.13,3.3,0.06,0.09,1000.0,0.01
+3,audio,0.97,0.0001,0.10,3.0,0.03,0.10,880.0,0.10

@@ -1,0 +1,5 @@
+sample_id,label,confidence,fft_plot_path,time_series_plot_path,is_anomaly,anomaly_reason
+0,audio,0.95,plots/fft_0.png,plots/time_series_0.png,False,
+1,audio,0.92,plots/fft_1.png,plots/time_series_1.png,False,
+2,noise,0.88,plots/fft_2.png,plots/time_series_2.png,True,Low confidence and high frequency noise
+3,audio,0.97,plots/fft_3.png,plots/time_series_3.png,False,
