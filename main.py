@@ -55,17 +55,11 @@ Bonnes pratiques imposées :
 # ============================================================================
 # IMPORTS
 # ============================================================================
-
 import sys
-import csv
-from pathlib import Path
 
 from PyQt5 import QtWidgets
-
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon
-
 from Dialog import Ui_Dialog
+from PyQt5.QtWidgets import QFileDialog
 
 import datetime # Import nécessaire pour le timestamp
 
@@ -87,14 +81,28 @@ class MainWindow(Ui_Dialog):
         self.setupUi(dialog)
         self.connexions()
 
+    """
+    La fonction connexions Permet de connecter les signalaux et Slots
+
+    Paramètres d'entrée :
+    -------
+    Aucun
+    
+    Effets
+    -------
+    Lors d'ppuis dans l'interface on appel des fonctions (slot)
+    """
     def connexions(self):
         # Connect the .clicked() signal with the .calculate() slot
         self.Generer.clicked.connect(self.calculate)
+        # Connexion bouton
+        self.Boutonparcourir.clicked.connect(self.ouvrir_fichier)
+        
 
     def calculate(self):
         # Nom et localisation du fichier à lire
-        nom_fichier = "C:\Temp\M2_Progr\m2_2025-2026\Fichier_entree.csv"
-        #nom_fichier = self.AffichageURL.text()
+        #nom_fichier = "C:\Temp\M2_Progr\m2_2025-2026\Fichier_entree.csv"
+        nom_fichier = self.AffichageURL.text()
 
         # On crée un objet "mon_signal" à partir de la classe Mon_Signal_GrpA
         mon_signal = Mon_Signal_GrpA()
@@ -113,12 +121,42 @@ class MainWindow(Ui_Dialog):
         print(" PROPRIÉTÉS DU SIGNAL :")
         print(f"Type : {mon_signal.type}")
         print(f"Source : {mon_signal.source}")
+        
         print(f"Taux d'échantillonnage (sample_rate) : {mon_signal.sample_rate} Hz")
+        self.Affichage_echantillon.setText(f"{mon_signal.sample_rate} Hz")
+        
         print(f"Durée du signal (duration) : {mon_signal.duration} s")
+        self.Affichage_duree_siganl.setText(f"{mon_signal.duration} s")
+        
         print(f"Timestamp : {mon_signal.timestamp}")
+        self.Affichage_uptdate.setText(f"{mon_signal.timestamp}")
+        
         print(f"Nombre d'échantillons : {len(mon_signal.samples)}")
+        self.Affichage_nb_echantillon.setText(f"{len(mon_signal.samples)}")
+        
         print(f"Aperçu des 5 premiers samples : {mon_signal.samples[:5]}")
 
+    """
+    La fonction ouvrir_fichier Permet d'ouvrir l'exporateur de fichier, pour sélection le fichier d'entrée'
+
+    Paramètres d'entrée :
+    -------
+    Aucun
+        
+    Effets
+    -------
+    Charge le fichier d'entrée
+    """
+    def ouvrir_fichier(self):
+        file_path, _ = QFileDialog.getOpenFileName(
+            None,
+            "Choisir un fichier",
+            "",
+            "Tous les fichiers (*.*)"
+        )
+        
+        if file_path:
+            self.AffichageURL.setText(file_path)
 
 
 class Mon_Signal_GrpA:
@@ -200,10 +238,12 @@ class Mon_Signal_GrpA:
         # .isoformat() formate les données au format iso (ex: 2026-05-13T15:55:00)
         self.timestamp = datetime.datetime.now().replace(microsecond=0).isoformat()
         
-        
+
+
 # ============================================================================
 # FONCTIONS
 # ============================================================================
+
 
 
 # ============================================================================
