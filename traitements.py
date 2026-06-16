@@ -160,6 +160,44 @@ def classify_sample(filepath: str) -> tuple:
     return predicted_label, round(confidence, 2)
 
 
+def classify_by_rules(filepath: str) -> str:
+    """
+    Classify the first row of filepath using fixed threshold rules (no database).
+
+    Returns the predicted label string.
+    Raises ValueError if the file cannot be read or has no rows.
+
+    --- ADD YOUR RULES BELOW ---
+    Read feature values from `row` and return the matching category name.
+    Return "UNKNOWN" as the fallback if no rule matches.
+    """
+    df = pd.read_csv(filepath)
+    if df.empty:
+        raise ValueError("The selected file contains no data rows.")
+    if len(df) > 1:
+        print(f"Warning: {filepath} has {len(df)} rows; only the first row is used.")
+    row = df.iloc[0]
+
+    def get(col, default=0.0):
+        return float(row[col]) if col in df.columns else default
+
+    # ------------------------------------------------------------------
+    # Example thresholds — replace or extend these with your own rules.
+    # ------------------------------------------------------------------
+    spectral_centroid = get("spectral_centroid")
+    rms               = get("rms")
+    mean              = get("mean")
+
+    if spectral_centroid > 5000:
+        return "AUDIO"
+    if rms > 0.5:
+        return "VIDEO"
+    if mean < 0.1:
+        return "NOISE"
+
+    return "UNKNOWN"
+
+
 def export_results(filepath: str, label: str, confidence: float) -> None:
     """Write classification results to processed_data.csv in the root folder."""
     df = pd.read_csv(filepath)
@@ -405,6 +443,97 @@ class DatabaseTab(QWidget):
 
 
 # ---------------------------------------------------------------------------
+# GUI — Rule-based classification tab
+# ---------------------------------------------------------------------------
+
+
+class RuleTab(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._last_label = None
+        self._last_filepath = None
+        self._setup_ui()
+
+    def _setup_ui(self):
+        layout = QVBoxLayout(self)
+        layout.setSpacing(16)
+        layout.setContentsMargins(24, 24, 24, 24)
+
+        info = QLabel("Classification without database — uses fixed threshold rules.")
+        info.setStyleSheet("color: grey;")
+        layout.addWidget(info)
+
+        # --- File selection row ---
+        file_row = QHBoxLayout()
+        file_row.addWidget(QLabel("Sample to test:"))
+        self._path_label = QLabel(str(DEFAULT_SAMPLE))
+        self._path_label.setWordWrap(True)
+        file_row.addWidget(self._path_label, stretch=1)
+        browse_btn = QPushButton("BROWSE")
+        browse_btn.clicked.connect(self._browse_clicked)
+        file_row.addWidget(browse_btn)
+        layout.addLayout(file_row)
+
+        # --- ANALYZE button ---
+        analyze_btn = QPushButton("ANALYZE")
+        analyze_btn.setFixedHeight(40)
+        analyze_btn.clicked.connect(self._analyze_clicked)
+        layout.addWidget(analyze_btn)
+
+        # --- Result area (no confidence) ---
+        self._type_label = QLabel("File type: ——")
+        self._type_label.setEnabled(False)
+        layout.addWidget(self._type_label)
+
+        layout.addStretch()
+
+        # --- Export button ---
+        self._export_btn = QPushButton("EXPORT RESULTS")
+        self._export_btn.setFixedHeight(40)
+        self._export_btn.setEnabled(False)
+        self._export_btn.clicked.connect(self._export_clicked)
+        layout.addWidget(self._export_btn)
+
+    def _browse_clicked(self):
+        path, _ = QFileDialog.getOpenFileName(
+            self, "Select features CSV", str(ROOT_DIR), "CSV files (*.csv)"
+        )
+        if path:
+            self._path_label.setText(path)
+
+    def _analyze_clicked(self):
+        filepath = self._path_label.text()
+        try:
+            label = classify_by_rules(filepath)
+        except FileNotFoundError:
+            QMessageBox.critical(self, "Error", f"File not found:\n{filepath}")
+            return
+        except ValueError as exc:
+            QMessageBox.critical(self, "Error", str(exc))
+            return
+        except Exception as exc:
+            QMessageBox.critical(self, "Error", f"Classification failed:\n{exc}")
+            return
+
+        self._last_label = label
+        self._last_filepath = filepath
+
+        self._type_label.setText(f"File type: {label}")
+        self._type_label.setEnabled(True)
+        self._export_btn.setEnabled(True)
+
+        QMessageBox.information(self, "Success", "Classification successful!")
+
+    def _export_clicked(self):
+        try:
+            export_results(self._last_filepath, self._last_label, 1.00)
+        except Exception as exc:
+            QMessageBox.critical(self, "Error", f"Export failed: {exc}")
+            return
+        QMessageBox.information(self, "Success", "Export successful!")
+
+
+# ---------------------------------------------------------------------------
 # Main window
 # ---------------------------------------------------------------------------
 
@@ -421,6 +550,7 @@ class MainWindow(QMainWindow):
         tabs = QTabWidget()
         tabs.addTab(HomeTab(), "Home")
         tabs.addTab(DatabaseTab(), "Database")
+        tabs.addTab(RuleTab(), "Classification")
         self.setCentralWidget(tabs)
 
 
