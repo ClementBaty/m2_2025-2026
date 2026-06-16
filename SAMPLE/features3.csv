@@ -1,0 +1,2 @@
+sample_id,fft_magnitude_0,fft_magnitude_1,fft_magnitude_2,fft_frequency_0,fft_frequency_1,fft_frequency_2,spectral_centroid,mean,std_dev,kurtosis,skewness,rms,peak_index_0,peak_index_1,peak_index_2,peak_amplitude_0,peak_amplitude_1,peak_amplitude_2
+0,1.0,0.067,0.0508,0.0,0.04,0.13,191.41,0.472847,0.204783,1.9798,-0.3359,0.515287,22255,15513,11948,0.9294,0.9255,0.9255
