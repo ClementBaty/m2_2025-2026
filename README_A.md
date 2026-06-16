@@ -2,7 +2,7 @@
 
 
 
-Nous sommes le groupe A.  
+Nous sommes le groupe A.
 
 Notre objectif est d’acquérir et de traiter le signal d’entrée à partir d’un fichier CSV.
 
@@ -16,9 +16,9 @@ Notre objectif est d’acquérir et de traiter le signal d’entrée à partir d
 
 &#x09;Le fichier d'entrée est de Type CSV.
 
-&#x09;La première colonne le temps, l'instant ou la donnée a étais enregistrais. 
+&#x09;La première colonne le temps, l'instant ou la donnée a étais enregistrais.
 
-&#x09;La deuxième colonne la donnée 
+&#x09;La deuxième colonne la donnée
 
 
 
@@ -40,17 +40,51 @@ Notre objectif est d’acquérir et de traiter le signal d’entrée à partir d
 
 
 
-
-
 \# Fichier de sortie
 
 
 
-Le fichier de sortie et un fichier CSV:
+Le fichier de sortie est un fichier au format CSV généré automatiquement par l'application.
 
 
 
 
+
+\## Utilisation du projet
+
+
+
+1\. Exécuter le fichier "main.py".
+
+
+
+2\. Ajouter un fichier d'entrée :
+
+&#x20;  - Cliquer sur le bouton "...".
+
+&#x20;  - Sélectionner le fichier CSV à analyser.
+
+&#x20;  - Le chemin du fichier apparaît alors dans la zone "Lien".
+
+
+
+3\. Compléter les informations relatives au fichier :
+
+&#x20;  - "Type de signal"
+
+&#x20;  - "Source"
+
+
+
+4\. Cliquer sur le bouton "Générer".
+
+
+
+5\. Résultats :
+
+&#x20;  - Les paramètres extraits du fichier sont affichés dans l'interface.
+
+&#x20;  - Le fichier de sortie est généré automatiquement sous le nom "Output\_GroupeA.csv".
 
 
 
@@ -101,6 +135,4 @@ Le fichier de sortie et un fichier CSV:
 &#x09;Utilisation de Git pour le versionnement
 
 &#x09;Utilisation raisonnée de l’IA (Vibe Coding interdit)
-
-
 
