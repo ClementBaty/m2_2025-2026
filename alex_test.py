@@ -6,12 +6,13 @@ Created on Wed May 13 15:08:49 2026
 """
 
 """
-Console script for raw signal acquisition simulation.
+Petit programme de test pour simuler l'acquisition d'un signal.
 
-This script asks the user for signal metadata, generates fake samples,
-and saves everything into a CSV file using pandas.
+Le programme demande des informations à l'utilisateur,
+génère des valeurs aléatoires puis les enregistre
+dans un fichier CSV.
 
-Author: 
+Auteur :
 
 - Alex Grapin
 - audioGroupe A
@@ -24,17 +25,14 @@ import pandas as pd
 
 class SignalAcquisition:
     """
-    Class used to simulate the acquisition of a raw signal.
-
-    This class collects signal information from the user, generates fake
-    samples, and exports the result into a CSV file.
+    Classe permet l'acquisition d'un signal.
     """
 
     def __init__(self):
         """
-        Initialize the SignalAcquisition object with default values.
+        Initialise les variables de la classe.
         """
-        self.signal_type = None
+        self.type = None
         self.source = None
         self.sample_rate = None
         self.duration = None
@@ -43,15 +41,9 @@ class SignalAcquisition:
 
     def ask_user_inputs(self):
         """
-        Ask the user for the signal metadata through the console.
-
-        The method retrieves:
-        - signal type
-        - source
-        - sample rate (Hz)
-        - duration (seconds)
+        Demande les informations du signal à l'utilisateur.
         """
-        self.signal_type = input("Enter signal type (ex: Audio): ")
+        self.type = input("Enter signal type (ex: Audio): ")
         self.source = input("Enter signal source (ex: Micro): ")
 
         self.sample_rate = float(input("Enter sample rate in Hz (ex: 1000): "))
@@ -59,20 +51,15 @@ class SignalAcquisition:
 
     def generate_timestamp(self):
         """
-        Generate a timestamp corresponding to the current date and time.
-
-        The timestamp format is ISO style: YYYY-MM-DD HH:MM:SS
+        Récupère la date et l'heure actuelle
+        
+        style: YYYY-MM-DD HH:MM:SS
         """
         self.timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     def generate_fake_samples(self):
         """
-        Generate fake samples for the signal.
-
-        The number of samples is computed from:
-        sample_rate * duration
-
-        Fake values are random floats between -1 and 1.
+        Génère des valeurs aléatoires pour simuler un signal.
         """
         number_of_samples = int(self.sample_rate * self.duration)
 
@@ -80,23 +67,23 @@ class SignalAcquisition:
         for _ in range(number_of_samples):
             self.samples.append(random.uniform(-1.0, 1.0))
 
-    def export_to_csv(self, filename="signal_raw.csv"):
+    def export_to_csv(self, filename="Output_GroupeA.csv"):
         """
-        Export the signal data into a CSV file using pandas.
+        Sauvegarde les données dans un fichier CSV avec pandas.
 
-        The CSV file contains:
+        Le fichier CSV contient:
         - timestamp
-        - signal_type
+        - type
         - source
         - sample_rate
         - duration
         - sample_index
-        - sample_value
+        - samples
 
         Parameters
         ----------
         filename : str
-            Name of the output CSV file.
+            Nom du fichier CVS en sortie.
         """
         data = []
 
@@ -104,12 +91,12 @@ class SignalAcquisition:
             data.append(
                 {
                     "timestamp": self.timestamp,
-                    "signal_type": self.signal_type,
+                    "type": self.type,
                     "source": self.source,
                     "sample_rate": self.sample_rate,
                     "duration": self.duration,
                     "sample_index": index,
-                    "sample_value": value,
+                    "samples": samples,
                 }
             )
 
@@ -120,13 +107,20 @@ class SignalAcquisition:
 
     def run(self):
         """
-        Run the complete acquisition simulation process.
+        Lance toutes les étapes du programme.
         """
         print("=== RAW SIGNAL ACQUISITION TEST ===\n")
 
+        # Demande les informations du signal
         self.ask_user_inputs()
+        
+        # Récupère la date actuelle
         self.generate_timestamp()
+        
+        # Crée des données aléatoires
         self.generate_fake_samples()
+        
+        # Sauvegarde les données dans un fichier CSV
         self.export_to_csv()
 
 
