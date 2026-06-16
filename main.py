@@ -342,6 +342,13 @@ class DatabaseTab(QWidget):
 
         layout.addStretch()
 
+        # --- Info label ---
+        self._info_label = QLabel(f"Choose one or multiple reference files corresponding to the selected file type.")
+        self._info_label.setStyleSheet("color: black;")
+        self._info_label.setVisible(True)
+        layout.addWidget(self._info_label)
+
+        layout.addStretch()
 
         # --- Load button ---
         load_btn = QPushButton("LOAD")
