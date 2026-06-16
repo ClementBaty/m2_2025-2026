@@ -1,12 +1,13 @@
 """
-File Type Classifier — Group 4
+File Type Classifier — Group D
 Szymon, Mame, Sokhna — M2 T3I ALTERNANCE 2026
 
-Receives features.csv from Group 3, classifies the file type using KNN
+Receives features.csv from Group C, classifies the file type using KNN
 against a local reference database, displays the result in a PyQt5 GUI,
 and exports processed_data.csv for Group 5.
 """
 
+import ctypes
 import os
 import sys
 import shutil
@@ -22,6 +23,7 @@ from PyQt5.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
     QFileDialog, QMessageBox, QComboBox, QLineEdit,
 )
+from PyQt5.QtGui import QIcon
 
 
 # ---------------------------------------------------------------------------
@@ -340,6 +342,7 @@ class DatabaseTab(QWidget):
 
         layout.addStretch()
 
+
         # --- Load button ---
         load_btn = QPushButton("LOAD")
         load_btn.setFixedHeight(40)
@@ -402,8 +405,11 @@ class DatabaseTab(QWidget):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("File Type Classifier — Group 4")
+        self.setWindowTitle("File Type Classifier — Group D")
         self.setMinimumSize(600, 500)
+        icon_path = ROOT_DIR / "icon.png"
+        if icon_path.exists():
+            self.setWindowIcon(QIcon(str(icon_path)))
 
         tabs = QTabWidget()
         tabs.addTab(HomeTab(), "Home")
@@ -416,6 +422,8 @@ class MainWindow(QMainWindow):
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("group4.filetypeclassifier")
+
     for d in [SAMPLE_DIR, DATABASE_DIR]:
         d.mkdir(parents=True, exist_ok=True)
     build_reference()
