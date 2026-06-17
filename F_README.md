@@ -1,4 +1,4 @@
-Le groupe de travail est composer de 4 personnes.
+Le groupe de travail est composé de 4 personnes.
 - Quentin ROUX
 - Romain FORNER
 - Nathan BAUDET
@@ -6,7 +6,7 @@ Le groupe de travail est composer de 4 personnes.
 
 Nous avons réparti le travail en différentes tâches :
 
-Réalisation de l’interface 1 : récupération du fichier, choix des données à afficher, paramétrage de l’affichage (bouton Échap, exécution, etc.) et vérification visuelle des données.
+Réalisation de l’interface 1 : récupération du fichier, choix des données à afficher, paramétrage de l’affichage (bouton échap, exécution, etc.) et vérification visuelle des données.
 
 Réalisation de l’interface 2 : réalisation de l’affichage des graphiques.
 
@@ -18,9 +18,9 @@ Nous utiliserons la convention « F_ » afin d’identifier nos fichiers par rap
 
 ## l'architecture du programme
 
-Comme dit précédament, nous avons nommé les fichier de codes F_... 
-F_0 correspond aux fichier mains qui gère le lencement des interface.
-F_1 correspond aux interfaces, F_1__ contient les fichier commun à toutes les interface ( sutructure de variables et structure de fonction)
-enssuit nos interfaces sont numéroter par ordre alphabetique. A = fenètre principale, B = fenètre graphique.
+Comme dit précédemment, nous avons nommé les fichiers de codes F_... 
+F_0 correspond aux fichiers mains qui gère le lancement des interfaces.
+F_1 correspond aux interfaces, F_1__ contient les fichiers communs à toutes les interfaces (structure de variables et structure de fonction)
+Ensuite, nos interfaces sont numérotées par ordre alphabétique. A = fenêtre principale, B = fenêtre graphique.
 
 ## extraction du fichier
