@@ -20,7 +20,6 @@ Auteur(s)
 - Simon SILVESTRE
 - Tom BOTTAZZINI
 
-
 Date
 -----
 2026
@@ -28,7 +27,6 @@ Date
 Consignes du projet
 -------------------
 Le projet doit respecter les contraintes suivantes :
-
 - Application Python modulaire en POO
 - Utilisation de PyQt5
 - Code documenté
@@ -37,36 +35,19 @@ Le projet doit respecter les contraintes suivantes :
 - Architecture propre et maintenable
 - L’IA doit être utilisée comme assistant technique
   et non comme générateur complet du projet
-
-Technologies obligatoires :
-- Python v3 uniquement
-- PyQt5 Designer / pyuic5
-- SciPy
-- Pandas
-- CSV
-
-Bonnes pratiques imposées :
-- Comprendre le code généré
-- Tester systématiquement le code
-- Documenter les fonctions/classes
-- Éviter le Vibe Coding
 """
 
 # ============================================================================
 # IMPORTS
 # ============================================================================
-import datetime
 import sys
+from datetime import datetime
 
+import pandas as pd
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QFileDialog
 
 from Dialog import Ui_Dialog
-
-# ============================================================================
-# CONSTANTES
-# ============================================================================
-
 
 # ============================================================================
 # CLASSES
@@ -74,112 +55,91 @@ from Dialog import Ui_Dialog
 
 class MainWindow(Ui_Dialog):
     """
-    Fenêtre principale de l'application.
+    Fenêtre principale de l'application PyQt5.
     """
     def __init__(self, dialog):
         Ui_Dialog.__init__(self)
         self.setupUi(dialog)
         self.connexions()
 
-
     def connexions(self):
         """
-        La fonction connexions Permet de connecter les signalaux et Slots
+        Connecte les signaux (clics) de l'interface aux fonctions (slots).
 
-        Paramètres d'entrée :
-        -------
-        Aucun
-        
         Returns
         -------
         None
-        
-        Effets
-        -------
-        Lors d'ppuis dans l'interface on appel des fonctions (slot)
         """
         # Connect the .clicked() signal with the .calculate() slot
         self.Generer.clicked.connect(self.calculate)
         # Connexion bouton
         self.Boutonparcourir.clicked.connect(self.ouvrir_fichier)
-        
 
     def calculate(self):
         """
-        La fonction calculate Permet de réaliser le coeur du projet.
-        Lors de l'appuis sur le bouton générer cet fonction est appeler
+        Réalise le cœur du traitement lors de l'appui sur le bouton "Générer".
 
-        Paramètres d'entrée :
-        -------
-        Aucun
-        
+        Extrait les données du CSV, effectue les calculs, met à jour 
+        l'affichage de l'interface utilisateur et exporte le fichier résultat.
+
         Returns
         -------
         None
-        
-        Effets
-        -------
-        
-        Extrais les donner 
-        Appel la fonction de géneration du fichier 
-        Réaliser le coeur du projet        
         """
-        # Nom et localisation du fichier à lire
-        #nom_fichier = "C:\Temp\M2_Progr\m2_2025-2026\Fichier_entree.csv"
+        # Nom et localisation du fichier à lire depuis l'interface
         nom_fichier = self.AffichageURL.text()
 
-        # On crée un objet "mon_signal" à partir de la classe Mon_Signal_GrpA
+        # Sécurité : vérifier qu'un fichier a bien été sélectionné
+        if not nom_fichier:
+            print("Veuillez sélectionner un fichier avant de générer.")
+            return
+
+        # On crée un objet "mon_signal" à partir de la classe MonSignalGrpA
         mon_signal = MonSignalGrpA()
 
-        # On appelle la méthode d'acquisition (Etape 1)
         try:
+            # 1. Acquisition et Traitement (Etape 1 et 2)
             mon_signal.acquisition_signal(nom_fichier)
+            mon_signal.traitement_signal()
+            
+            # 2. Récupération des choix de l'utilisateur depuis l'interface (GUI)
+            # Utilisation de signal_type et signal_source pour respecter ta classe
+            mon_signal.signal_type = self.comboBox_Type.currentText()
+            mon_signal.signal_source = self.comboBox_Source.currentText()
+            
+            # 3. AFFICHAGE POUR VERIFIER QUE TOUT FONCTIONNE (Console + GUI)
+            print("--- PROPRIÉTÉS DU SIGNAL ---")
+            print(f"Type : {mon_signal.signal_type}")
+            print(f"Source : {mon_signal.signal_source}")
+            
+            print(f"Taux d'échantillonnage : {mon_signal.sample_rate} Hz")
+            self.Affichage_echantillon.setText(f"{mon_signal.sample_rate} Hz")
+            
+            print(f"Durée du signal : {mon_signal.duration} s")
+            self.Affichage_duree_siganl.setText(f"{mon_signal.duration} s")
+            
+            print(f"Timestamp : {mon_signal.timestamp}")
+            self.Affichage_uptdate.setText(f"{mon_signal.timestamp}")
+            
+            print(f"Nombre d'échantillons : {len(mon_signal.samples)}")
+            self.Affichage_nb_echantillon.setText(f"{len(mon_signal.samples)}")
+            
+            print(f"Aperçu des 5 premiers samples : {mon_signal.samples[:5]}")
+
+            # 4. Exportation du fichier résultat avec toutes les données compilées
+            mon_signal.export_to_csv("Output_GroupeA.csv")
+
         except Exception as e:
-            print(f"Erreur : {e}")
-
-        # On appelle la méthode de traitement (Etape 2)
-        mon_signal.traitement_signal()
-        
-        # A remplir par Manal
-        mon_signal.type = self.comboBox_Type.currentText()
-        mon_signal.source = self.comboBox_Source.currentText()
-        
-        # AFFICHAGE POUR VERIFIER QUE TOUT FONCTIONNE
-        print(" PROPRIÉTÉS DU SIGNAL :")
-        print(f"Type : {mon_signal.type}")
-        print(f"Source : {mon_signal.source}")
-        
-        print(f"Taux d'échantillonnage (sample_rate) : {mon_signal.sample_rate} Hz")
-        self.Affichage_echantillon.setText(f"{mon_signal.sample_rate} Hz")
-        
-        print(f"Durée du signal (duration) : {mon_signal.duration} s")
-        self.Affichage_duree_siganl.setText(f"{mon_signal.duration} s")
-        
-        print(f"Timestamp : {mon_signal.timestamp}")
-        self.Affichage_uptdate.setText(f"{mon_signal.timestamp}")
-        
-        print(f"Nombre d'échantillons : {len(mon_signal.samples)}")
-        self.Affichage_nb_echantillon.setText(f"{len(mon_signal.samples)}")
-        
-        print(f"Aperçu des 5 premiers samples : {mon_signal.samples[:5]}")
-
+            print(f"Erreur lors du traitement : {e}")
 
     def ouvrir_fichier(self):
         """
-        La fonction ouvrir_fichier Permet d'ouvrir l'exporateur de fichier, pour sélection le fichier d'entrée
-        Un filtre est appliquer pour ouvrire uniquement un fichier .csv
+        Ouvre l'explorateur de fichiers pour sélectionner le fichier d'entrée.
+        Un filtre est appliqué pour n'ouvrir que les fichiers .csv.
 
-        Paramètres d'entrée :
-        -------
-        Aucun
-        
         Returns
         -------
         None
-            
-        Effets
-        -------
-        Charge le fichier d'entrée
         """
         file_path, _ = QFileDialog.getOpenFileName(
             None,
@@ -193,98 +153,92 @@ class MainWindow(Ui_Dialog):
 
 
 class MonSignalGrpA:
-    
-    # Le constructeur : il initialise les variables quand on crée le signal
+    """
+    Représente un signal numérique pour le projet du Groupe A.
+
+    Gère l'extraction des données, le calcul des métriques temporelles,
+    et l'exportation des résultats via Pandas.
+    """
+
     def __init__(self):
-        self.type = ""
-        self.source = ""
+        """Initialise les attributs du signal avec des valeurs par défaut."""
+        self.signal_type = ""
+        self.signal_source = ""
         self.sample_rate = 0
         self.duration = 0.0
         self.timestamp = ""
         self.samples = []
-        
-        # Variable interne du vecteur temps du signal 
         self.t = []
 
-    # ETAPE 1 : EXTRACTION DES DONNEES
     def acquisition_signal(self, filename):
         """
-        La fonction Acquisition_signal lit le fichier CSV contenant le signal.
+        Lit le fichier CSV spécifié et extrait les données du signal.
 
-        Paramètres d'entrée :
-        -------
-        filename : str (chemin du fichier + nom du fichier)
-        
-        Returns
-        -------
-        None
-
-        Effets
-        -------
-        On remplit les attributs suivants :
-        - self.t : liste des temps
-        - self.samples : liste des échantillons du signal
+        Args:
+            filename (str): Le chemin d'accès complet au fichier CSV.
         """
-        # On vide les listes au cas où on réutiliserait la fonction
         self.t = []
         self.samples = []
-        
-        with open(filename, "r") as f:
-            next(f)  # saute la première ligne (les en-têtes)
+
+        with open(filename, "r", encoding="utf-8") as f:
+            next(f)  # Saute la ligne des en-têtes
             for ligne in f:
-                ligne = ligne.strip() #enlever les espaces et retours à la ligne
-                if not ligne: # Sécurité : ignorer les lignes vides
+                ligne = ligne.strip()
+                if not ligne:
                     continue
-                valeurs = ligne.split(",")  # Le séparateur est une virgule
-                
-                # On stocke les données dans les attributs de la classe (self)
+                valeurs = ligne.split(",")
+
                 self.t.append(float(valeurs[0]))
                 self.samples.append(float(valeurs[1]))
 
-    # ETAPE 2 : TRAITEMENT DES DONNEES POUR CALCULER LES INFORMATIONS DU SIGNAL
     def traitement_signal(self):
         """
-        La fonction Traitement_signal traite le signal.
+        Calcule la fréquence, la durée et formate les données.
 
-        Paramètres d'entrée :
-        -------
-        Aucun
-        
-        Returns
-        -------
-        None
-
-        Effets
-        -------
-        On remplit les attributs suivants :
-        - self.sample_rate : Fréquence du signal
-        - self.duration : Durée du signal
-        - self.timestamp : Date de traitement du signal
+        Les valeurs temporelles et les échantillons sont arrondis à
+        4 décimales pour un export propre. Génère également l'horodatage.
         """
-        # On s'assure qu'il y a au moins 2 points de mesures pour pouvoir faire des calculs
         if len(self.t) >= 2:
-            # Taux d'échantillonnage (en Hz)
-            dt = self.t[1] - self.t[0] # Période d'échantillonnage
-            self.sample_rate = round(1.0 / dt) # 1 / dt donne la fréquence. "round()" arrondit à l'entier
-            
-            # Durée du signal (en secondes)
-            self.duration = self.t[-1] - self.t[0] # t[-1] permet de récupérer le dernier élément
+            dt = self.t[1] - self.t[0]
+            self.sample_rate = round(1.0 / dt)
+            self.duration = round(self.t[-1] - self.t[0], 4)
         else:
             self.sample_rate = 0
             self.duration = 0
 
-        # Timestamp (Horodatage de l'extraction)
-        # datetime.now() récupère la date/heure du PC
-        # .replace(microsecond=0) pour ne pas afficher les microsecondes
-        # .isoformat() formate les données au format iso (ex: 2026-05-13T15:55:00)
-        self.timestamp = datetime.datetime.now().replace(microsecond=0).isoformat()
-        
+        # Arrondi à 4 décimales via liste en compréhension
+        self.t = [round(temps, 4) for temps in self.t]
+        self.samples = [round(valeur, 4) for valeur in self.samples]
 
+        self.timestamp = datetime.now().replace(microsecond=0).isoformat()
 
-# ============================================================================
-# FONCTIONS
-# ============================================================================
+    def export_to_csv(self, filename="Output_GroupeA.csv"):
+        """
+        Sauvegarde les données du signal dans un fichier CSV.
 
+        Args:
+            filename (str): Nom du fichier de sortie. Par défaut
+                'Output_GroupeA.csv'.
+        """
+        data = []
+
+        for index, value in enumerate(self.samples):
+            data.append(
+                {
+                    "timestamp": self.timestamp,
+                    "type": self.signal_type,
+                    "source": self.signal_source,
+                    "sample_rate": self.sample_rate,
+                    "duration": self.duration,
+                    "sample_index": index,
+                    "time": self.t[index],
+                    "samples": value
+                }
+            )
+
+        dataframe = pd.DataFrame(data)
+        dataframe.to_csv(filename, index=False)
+        print(f"\nFichier de sortie généré avec succès : {filename}")
 
 
 # ============================================================================

@@ -1,118 +1,148 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed May 13 16:33:56 2026
+Intégration finale du code pour le Groupe A.
 
-@author: ss06384z
+Ce script permet l'acquisition de signaux depuis un fichier CSV,
+le calcul de leurs propriétés, la saisie d'informations utilisateur
+et l'exportation vers un nouveau fichier CSV.
 """
 
-import datetime # Import nécessaire pour le timestamp
+from datetime import datetime
 
-class Mon_Signal_GrpA:
-    
-    # Le constructeur : il initialise les variables quand on crée le signal
+import pandas as pd
+
+
+class MonSignalGrpA:
+    """
+    Représente un signal numérique pour le projet du Groupe A.
+
+    Gère l'extraction des données, le calcul des métriques temporelles,
+    et l'exportation des résultats.
+    """
+
     def __init__(self):
-        self.type = ""
-        self.source = ""
+        """Initialise les attributs du signal avec des valeurs par défaut."""
+        self.signal_type = ""
+        self.signal_source = ""
         self.sample_rate = 0
         self.duration = 0.0
         self.timestamp = ""
         self.samples = []
-        
-        # Variable interne du vecteur temps du signal 
-        self.t = [] 
+        self.t = []
 
-    # ETAPE 1 : EXTRACTION DES DONNEES
-    def Acquisition_signal(self, filename):
+    def acquisition_signal(self, filename):
         """
-        La fonction Acquisition_signal lit le fichier CSV contenant le signal.
+        Lit le fichier CSV spécifié et extrait les données du signal.
 
-        Paramètres d'entrée :
-        -------
-        filename : str (chemin du fichier + nom du fichier)
+        Extrait la première colonne pour le temps et la deuxième pour
+        les données, puis remplit les attributs internes `t` et `samples`.
 
-        Effets
-        -------
-        On remplit les attributs suivants :
-        - self.t : liste des temps
-        - self.samples : liste des échantillons du signal
+        Args:
+            filename (str): Le chemin d'accès complet au fichier CSV.
         """
-        # On vide les listes au cas où on réutiliserait la fonction
         self.t = []
         self.samples = []
-        
-        with open(filename, "r") as f:
-            next(f)  # saute la première ligne (les en-têtes)
+
+        with open(filename, "r", encoding="utf-8") as f:
+            next(f)  # Saute la ligne des en-têtes
             for ligne in f:
-                ligne = ligne.strip()  # enlever les espaces et retours à la ligne
-                if not ligne: # Sécurité : ignorer les lignes vides
+                ligne = ligne.strip()
+                if not ligne:
                     continue
-                valeurs = ligne.split(",")  # Le séparateur est une virgule
-                
-                # On stocke les données dans les attributs de la classe (self)
+                valeurs = ligne.split(",")
+
                 self.t.append(float(valeurs[0]))
                 self.samples.append(float(valeurs[1]))
 
-    # ETAPE 2 : TRAITEMENT DES DONNEES POUR CALCULER LES INFORMATIONS DU SIGNAL
-    def Traitement_signal(self):
+    def traitement_signal(self):
         """
-        La fonction Traitement_signal traite le signal.
+        Calcule la fréquence, la durée et formate les données.
 
-        Paramètres d'entrée :
-        -------
-        Aucun
-
-        Effets
-        -------
-        On remplit les attributs suivants :
-        - self.sample_rate : Fréquence du signal
-        - self.duration : Durée du signal
-        - self.timestamp : Date de traitement du signal
+        Les valeurs temporelles et les échantillons sont arrondis à
+        4 décimales pour un export propre. Génère également l'horodatage.
         """
-        # On s'assure qu'il y a au moins 2 points de mesures pour pouvoir faire des calculs
         if len(self.t) >= 2:
-            # Taux d'échantillonnage (en Hz)
-            dt = self.t[1] - self.t[0] # Période d'échantillonnage
-            self.sample_rate = round(1.0 / dt) # 1 / dt donne la fréquence. "round()" arrondit à l'entier
-            
-            # Durée du signal (en secondes)
-            self.duration = self.t[-1] - self.t[0] # t[-1] permet de récupérer le dernier élément
+            dt = self.t[1] - self.t[0]
+            self.sample_rate = round(1.0 / dt)
+            self.duration = round(self.t[-1] - self.t[0], 4)
         else:
             self.sample_rate = 0
             self.duration = 0
 
-        # Timestamp (Horodatage de l'extraction)
-        # datetime.now() récupère la date/heure du PC
-        # .replace(microsecond=0) pour ne pas afficher les microsecondes
-        # .isoformat() formate les données au format iso (ex: 2026-05-13T15:55:00)
-        self.timestamp = datetime.datetime.now().replace(microsecond=0).isoformat()
+        # Arrondi à 4 décimales via liste en compréhension
+        self.t = [round(temps, 4) for temps in self.t]
+        self.samples = [round(valeur, 4) for valeur in self.samples]
+
+        self.timestamp = datetime.now().replace(microsecond=0).isoformat()
+
+    def ask_user_inputs(self):
+        """Demande à l'utilisateur de renseigner le type et la source."""
+        self.signal_type = input("Enter signal type (ex: Audio): ")
+        self.signal_source = input("Enter signal source (ex: Micro): ")
+
+    def export_to_csv(self, filename="Output_GroupeA.csv"):
+        """
+        Sauvegarde les données du signal dans un fichier CSV.
+
+        Args:
+            filename (str): Nom du fichier de sortie. Par défaut
+                'Output_GroupeA.csv'.
+        """
+        data = []
+
+        for index, value in enumerate(self.samples):
+            data.append(
+                {
+                    "timestamp": self.timestamp,
+                    "type": self.signal_type,
+                    "source": self.signal_source,
+                    "sample_rate": self.sample_rate,
+                    "duration": self.duration,
+                    "sample_index": index,
+                    "time": self.t[index],
+                    "samples": value
+                }
+            )
+
+        dataframe = pd.DataFrame(data)
+        dataframe.to_csv(filename, index=False)
+        print(f"\nFichier sauvegardé avec succès : {filename}")
+
+    def run(self, filename):
+        """
+        Exécute la séquence complète d'acquisition et de traitement.
+
+        Args:
+            filename (str): Le chemin d'accès au fichier CSV à analyser.
+        """
+        print("=== ACQUISITION ET TRAITEMENT DU SIGNAL ===\n")
+
+        self.acquisition_signal(filename)
+        self.traitement_signal()
+        self.ask_user_inputs()
+        self.export_to_csv()
 
 
 # ==========================================
-# Tests
+# Tests et Exécution
 # ==========================================
+if __name__ == "__main__":
+    # Nom et localisation du fichier à lire
+    nom_fichier = "U:\\Projet_prog\\Test\\m2_2025-2026\\Fichier_entree.csv"
 
-# Nom et localisation du fichier à lire
-nom_fichier = "U:\\Projet_prog\\Test\\m2_2025-2026\\Fichier_entree.csv"
+    # On crée une instance de la classe
+    mon_signal = MonSignalGrpA()
 
-# On crée un objet "mon_signal" à partir de la classe Mon_Signal_GrpA
-mon_signal = Mon_Signal_GrpA()
+    # On lance le programme
+    mon_signal.run(nom_fichier)
 
-# On appelle la méthode d'acquisition (Etape 1)
-mon_signal.Acquisition_signal(nom_fichier)
-
-# On appelle la méthode de traitement (Etape 2)
-mon_signal.Traitement_signal()
-
-# A remplir par Manal
-mon_signal.type = "audio"
-mon_signal.source = "microphone"
-
-# AFFICHAGE POUR VERIFIER QUE TOUT FONCTIONNE
-print(" PROPRIÉTÉS DU SIGNAL :")
-print(f"Type : {mon_signal.type}")
-print(f"Source : {mon_signal.source}")
-print(f"Taux d'échantillonnage (sample_rate) : {mon_signal.sample_rate} Hz")
-print(f"Durée du signal (duration) : {mon_signal.duration} s")
-print(f"Timestamp : {mon_signal.timestamp}")
-print(f"Nombre d'échantillons : {len(mon_signal.samples)}")
-print(f"Aperçu des 5 premiers samples : {mon_signal.samples[:5]}")
+    # Affichage de vérification
+    print("\n--- PROPRIÉTÉS DU SIGNAL ---")
+    print(f"Type : {mon_signal.signal_type}")
+    print(f"Source : {mon_signal.signal_source}")
+    print(f"Taux d'échantillonnage : {mon_signal.sample_rate} Hz")
+    print(f"Durée du signal : {mon_signal.duration} s")
+    print(f"Timestamp : {mon_signal.timestamp}")
+    print(f"Nombre d'échantillons : {len(mon_signal.samples)}")
+    print(f"Aperçu des 5 premiers temps : {mon_signal.t[:5]}")
+    print(f"Aperçu des 5 premiers samples : {mon_signal.samples[:5]}")
