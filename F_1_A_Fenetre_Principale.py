@@ -20,6 +20,8 @@ class FenetrePrincipale(COMMONCLASS):
 
         self.init_voyant(self.voy_url)
 
+        self.comboBox.currentIndexChanged.connect(self.maj_led)
+        
     def showEvent(self, event):
         """
         détécte l'affichage de l'écran puis executes les fonction voulues a l'affichage ex : reffrech,...
@@ -66,3 +68,10 @@ class FenetrePrincipale(COMMONCLASS):
             self.comboBox.clear()
             for point in d.donnees:
                 self.comboBox.addItem(str(point['sample_id']))
+                
+    def maj_led(self, index):
+        point = self.comon_var.donnees[index]
+        if point['is_anomaly'] == 'True':
+            self.set_voyant_color(self.LED_1, "red")
+        else:
+            self.set_voyant_color(self.LED_1, "green")
