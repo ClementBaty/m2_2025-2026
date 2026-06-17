@@ -19,6 +19,7 @@ class FenetrePrincipale(COMMONCLASS):
         self.url_input.editingFinished.connect(self.verif_chemin)
 
         self.init_voyant(self.voy_url)
+        self.init_voyant(self.LED_1)
 
         self.comboBox.currentIndexChanged.connect(self.maj_led)
         
