@@ -26,6 +26,7 @@ class COMMONCLASS(QMainWindow):
             border: 2px solid black;
             border-radius: {radius}px;
         """)
+
 class COMONVAR:
     def __init__(self):
         self.chemin = "analysis.csv"
