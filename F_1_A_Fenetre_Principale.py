@@ -23,6 +23,7 @@ class FenetrePrincipale(COMMONCLASS):
         self.init_voyant(self.LED_1)
 
         self.comboBox.currentIndexChanged.connect(self.maj_led)
+        self.tableWidget.setStyleSheet("QTableWidget::item:selected { background-color: #1a73e8; color: white; }")
         
     def showEvent(self, event):
         """
@@ -85,6 +86,7 @@ class FenetrePrincipale(COMMONCLASS):
                 for j in range(len(colonnes)):
                     valeur = d.donnees[i][colonnes[j]]
                     self.tableWidget.setItem(i, j, QTableWidgetItem(str(valeur)))
+                    self.tableWidget.resizeColumnsToContents()
                 
     def maj_led(self, index):
         point = self.comon_var.donnees[index]
