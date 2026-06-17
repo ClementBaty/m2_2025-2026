@@ -19,6 +19,26 @@ Il combine une interface PyQt5 ergonomique et un moteur d’analyse basé sur Nu
 ##  2. Entrées attendues
 
 ### Fichier CSV/JSON
+
+Le module accepte deux types de fichiers :
+
+- **CSV** : tableau de données avec colonnes structurées  
+- **JSON** : dictionnaire contenant les mêmes informations que le CSV, mais sous forme de listes
+
+#### Formats JSON 
+
+Pour un **signal temporel ou spectral**, le JSON doit contenir un dictionnaire du type :
+
+      ```json
+      {
+        "time": [0.0, 0.001, 0.002, ...],
+        "value": [0.12, 0.15, 0.10, ...]
+      }
+      {
+        "freq": [0.0, 10.0, 20.0, ...],
+        "amp": [0.5, 1.2, 0.8, ...]
+      }
+
 Le module accepte deux formats :
 
 - **Signal temporel** : colonne temps + colonne amplitude  
