@@ -61,18 +61,18 @@ class Ui_Dialog(object):
         self.Bulle_taux_echantillon.setGeometry(QtCore.QRect(350, 140, 131, 21))
         self.Bulle_taux_echantillon.setObjectName("Bulle_taux_echantillon")
         self.Affichage_echantillon = QtWidgets.QLabel(Dialog)
-        self.Affichage_echantillon.setGeometry(QtCore.QRect(480, 140, 111, 20))
+        self.Affichage_echantillon.setGeometry(QtCore.QRect(480, 140, 160, 20))
         self.Affichage_echantillon.setText("")
         self.Affichage_echantillon.setObjectName("Affichage_echantillon")
         self.Bulle_enregistrement = QtWidgets.QLabel(Dialog)
         self.Bulle_enregistrement.setGeometry(QtCore.QRect(350, 170, 131, 21))
         self.Bulle_enregistrement.setObjectName("Bulle_enregistrement")
         self.Affichage_uptdate = QtWidgets.QLabel(Dialog)
-        self.Affichage_uptdate.setGeometry(QtCore.QRect(490, 170, 111, 20))
+        self.Affichage_uptdate.setGeometry(QtCore.QRect(490, 170, 160, 20))
         self.Affichage_uptdate.setText("")
         self.Affichage_uptdate.setObjectName("Affichage_uptdate")
         self.Affichage_nb_echantillon = QtWidgets.QLabel(Dialog)
-        self.Affichage_nb_echantillon.setGeometry(QtCore.QRect(480, 200, 111, 20))
+        self.Affichage_nb_echantillon.setGeometry(QtCore.QRect(480, 200, 160, 20))
         self.Affichage_nb_echantillon.setText("")
         self.Affichage_nb_echantillon.setObjectName("Affichage_nb_echantillon")
         self.Bulle_nb_echantillon = QtWidgets.QLabel(Dialog)
@@ -82,14 +82,12 @@ class Ui_Dialog(object):
         self.Bulle_duree_du_signal.setGeometry(QtCore.QRect(350, 230, 131, 21))
         self.Bulle_duree_du_signal.setObjectName("Bulle_duree_du_signal")
         self.Affichage_duree_siganl = QtWidgets.QLabel(Dialog)
-        self.Affichage_duree_siganl.setGeometry(QtCore.QRect(480, 230, 111, 20))
+        self.Affichage_duree_siganl.setGeometry(QtCore.QRect(480, 230, 160, 20))
         self.Affichage_duree_siganl.setText("")
         self.Affichage_duree_siganl.setObjectName("Affichage_duree_siganl")
-        self.Lien_2 = QtWidgets.QLabel(Dialog)
-        self.Lien_2.setGeometry(QtCore.QRect(20, 310, 281, 51))
-        self.Lien_2.setObjectName("Lien_2")
 
         self.retranslateUi(Dialog)
+        self.Exit.clicked.connect(Dialog.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
@@ -127,6 +125,3 @@ class Ui_Dialog(object):
         self.Bulle_enregistrement.setText(_translate("Dialog", "Derniere enregistrement :"))
         self.Bulle_nb_echantillon.setText(_translate("Dialog", "Nombre d\'échantillon : "))
         self.Bulle_duree_du_signal.setText(_translate("Dialog", "Durée du signal :"))
-        self.Lien_2.setText(_translate("Dialog", "Classe : M2-3EA\n"
-"Groupe : \n"
-"BOTTAZZINI ; BETTAOUI ; SILVESTRE ; GRAPIN"))
