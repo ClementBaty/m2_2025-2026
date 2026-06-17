@@ -29,10 +29,10 @@ class Fenetregraphique(COMMONCLASS):
         chemin_fft = self.comon_var.fft_plot_path
 
         if chemin_signal == "":
-            chemin_signal = "test_signal.png"
+            chemin_signal = "ERREUR_IMAGE_NOT_FOUND.png"
 
         if chemin_fft == "":
-            chemin_fft = "test_fft.png"
+            chemin_fft = "ERREUR_IMAGE_NOT_FOUND.png"
 
         image_signal = QPixmap(chemin_signal)
         image_fft = QPixmap(chemin_fft)
