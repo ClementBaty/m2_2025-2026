@@ -63,3 +63,6 @@ class FenetrePrincipale(COMMONCLASS):
         d = Donnee(str(fichier))
         if d.FichierValide:
             self.comon_var.donnees = d.donnees
+            self.comboBox.clear()
+            for point in d.donnees:
+                self.comboBox.addItem(str(point['sample_id']))
