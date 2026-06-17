@@ -19,7 +19,7 @@
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>211</width>
+      <width>371</width>
       <height>16</height>
      </rect>
     </property>
@@ -27,39 +27,10 @@
      <string>Visualisation des résultats d’analyse</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="F_load_button">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>39</y>
-      <width>331</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Charger un fichier analysis.json / analysis.csv</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="F_graph_combo">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>41</y>
-      <width>251</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="editable">
-     <bool>true</bool>
-    </property>
-    <property name="currentText">
-     <string>Choisir le graphique à afficher</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="F_refresh_button">
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>20</x>
       <y>40</y>
       <width>91</width>
       <height>31</height>
@@ -69,23 +40,10 @@
      <string>Actualiser</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="F_export_button">
-    <property name="geometry">
-     <rect>
-      <x>750</x>
-      <y>40</y>
-      <width>161</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Exporter le graphique</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="F_quit_button">
     <property name="geometry">
      <rect>
-      <x>930</x>
+      <x>130</x>
       <y>40</y>
       <width>56</width>
       <height>31</height>
@@ -93,22 +51,6 @@
     </property>
     <property name="text">
      <string>Quitter</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="F_info_text">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>30</y>
-      <width>301</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-    <property name="plainText">
-     <string>Aucun fichier chargé.</string>
     </property>
    </widget>
    <widget class="QLabel" name="F_time_signal_label">
