@@ -48,9 +48,9 @@ Et de générer un fichier de sortie qui sera transmis au groupe B.
 
 &#x20;   		timestamp
 
-&#x20;   		signal\_type
+&#x20;   		type
 
-&#x20;   		signal\_source
+&#x20;   		source
 
 &#x20;   		sample\_rate
 
