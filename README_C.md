@@ -27,7 +27,7 @@ Le module accepte deux formats :
 Le type de signal est détecté automatiquement.
 
 ### Paramètres utilisateur
-- Fréquence d’échantillonnage `fs` (obligatoire pour les signaux temporels)
+- Fréquence d’échantillonnage `fs` (vous pouvez decider de l'indiquer manuellement ou quéelle soit calculée automatiquement en fonction des données du signal filtré)
 - Dossier de sortie
 - Options d’export : CSV / JSON
 
