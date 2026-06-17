@@ -4,6 +4,7 @@ from pathlib import Path
 
 from F_1___Common_Structure import COMMONCLASS
 from F_extracteur_de_Donnee import Donnee
+from PyQt5.QtWidgets import QTableWidgetItem
 
 
 class FenetrePrincipale(COMMONCLASS):
@@ -75,9 +76,20 @@ class FenetrePrincipale(COMMONCLASS):
             if ancien_index < len(d.donnees):
                 self.comboBox.setCurrentIndex(ancien_index)
                 
+            colonnes = ['sample_id', 'label', 'confidence', 'fft_plot_path', 'time_series_plot_path', 'is_anomaly', 'anomaly_reason']
+            self.tableWidget.setColumnCount(len(colonnes))
+            self.tableWidget.setRowCount(len(d.donnees))
+            self.tableWidget.setHorizontalHeaderLabels(colonnes)
+
+            for i in range(len(d.donnees)):
+                for j in range(len(colonnes)):
+                    valeur = d.donnees[i][colonnes[j]]
+                    self.tableWidget.setItem(i, j, QTableWidgetItem(str(valeur)))
+                
     def maj_led(self, index):
         point = self.comon_var.donnees[index]
         if point['is_anomaly'] == 'True':
             self.set_voyant_color(self.LED_1, "red")
         else:
             self.set_voyant_color(self.LED_1, "green")
+        self.tableWidget.selectRow(index)
