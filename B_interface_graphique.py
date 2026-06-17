@@ -12,7 +12,7 @@ import sys
 class FenetrePrincipale(QMainWindow):
     def __init__(self):
         super().__init__()
-        loadUi(r"C:\Users\kd08185z\m2_2025-2026\interface_graphique.ui", self)
+        loadUi(r"C:\Users\on07659z\m2_2025-2026\interface_graphique.ui", self)
 
 
 app = QApplication(sys.argv)
