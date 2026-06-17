@@ -30,6 +30,7 @@ class Fenetregraphique(COMMONCLASS):
         """
         Détecte l'affichage de la fenêtre graphique.
         """
+
         super().showEvent(event)
         print("La fenêtre GRAPHIQUE vient d'être affichée")
 
@@ -37,18 +38,22 @@ class Fenetregraphique(COMMONCLASS):
 
     def afficher_images(self):
         """
-        Affiche les images du signal temporel et de la FFT
-        à partir des chemins stockés dans comon_var.
+        Affiche les images du signal temporel et de la FFT.
+        Les labels prennent la taille des images.
         """
 
         chemin_signal = self.comon_var.time_series_plot_path
         chemin_fft = self.comon_var.fft_plot_path
 
-        if chemin_signal == "" or chemin_fft == "":
-            self.F_info_text.appendPlainText(
-                "Erreur : les chemins des images ne sont pas définis."
-            )
-            return
+        # Test temporaire si les chemins communs sont vides
+        if chemin_signal == "":
+            chemin_signal = "test_signal.png"
+
+        if chemin_fft == "":
+            chemin_fft = "test_fft.png"
+
+        print("Chemin signal :", chemin_signal)
+        print("Chemin FFT :", chemin_fft)
 
         image_signal = QPixmap(chemin_signal)
         image_fft = QPixmap(chemin_fft)
@@ -59,7 +64,7 @@ class Fenetregraphique(COMMONCLASS):
             )
         else:
             self.F_time_signal_label.setPixmap(image_signal)
-            self.F_time_signal_label.resize(image_signal.size())
+            self.F_time_signal_label.setFixedSize(image_signal.size())
 
         if image_fft.isNull():
             self.F_info_text.appendPlainText(
@@ -67,11 +72,13 @@ class Fenetregraphique(COMMONCLASS):
             )
         else:
             self.F_fft_signal_label.setPixmap(image_fft)
-            self.F_fft_signal_label.resize(image_fft.size())
+            self.F_fft_signal_label.setFixedSize(image_fft.size())
 
         self.F_info_text.appendPlainText(
-            "Images chargées depuis les variables communes."
+            "Images chargées."
         )
+
+        #self.adjustSize()
 
     def test_exporter(self):
         """
