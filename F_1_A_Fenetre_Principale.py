@@ -66,9 +66,14 @@ class FenetrePrincipale(COMMONCLASS):
         d = Donnee(str(fichier))
         if d.FichierValide:
             self.comon_var.donnees = d.donnees
+            ancien_index = self.comboBox.currentIndex()
+            """J'ai rajouté ancien_index pour garder l'index sélectionné 
+            après le changement de fenêtre."""
             self.comboBox.clear()
             for point in d.donnees:
                 self.comboBox.addItem(str(point['sample_id']))
+            if ancien_index < len(d.donnees):
+                self.comboBox.setCurrentIndex(ancien_index)
                 
     def maj_led(self, index):
         point = self.comon_var.donnees[index]
