@@ -81,32 +81,34 @@ Notre groupe a travaillé de manière collaborative. Voici la répartition réel
 
  ### 1. Analyse des besoins et choix techniques 
 Nous avons défini ensemble :
--les fonctionnalités nécessaires,
--le choix du code de référence issu de nos anciens cours,
--la structure générale du projet.
+- les fonctionnalités nécessaires,
+- le choix du code de référence issu de nos anciens cours,
+- la structure générale du projet.
 
 ### 2. Développement du moteur d’extraction 
 Nous avons :
--vérifier la cohérence du code d’extraction existant,
--corriger les erreurs,
--améliorer la robustesse,
--intégrer l’IA pour optimiser certaines fonctions,
--valider les résultats.
+- vérifier la cohérence du code d’extraction existant,
+- corriger les erreurs,
+- améliorer la robustesse,
+- intégrer l’IA pour optimiser certaines fonctions,
+- valider les résultats.
 
-### 3. Conception de l’interface graphique (réalisée par le reste de l’équipe)
+### 3. Conception de l’interface graphique 
 Nous avons travaillé sur :
--la réflexion ergonomique,
--la conception visuelle,
--la création de l’interface dans Qt Designer,
--la conversion du .ui en .py,
--l’intégration avec le code principal.
 
-### 4. Intégration finale avec l’IA (travail collectif)
+- la réflexion ergonomique,
+- la conception visuelle,
+- la création de l’interface dans Qt Designer,
+- la conversion du .ui en .py,
+- l’intégration avec le code principal.
+
+### 4. Intégration finale avec l’IA 
 En se basant de notre code et de l'interface fait l’IA nous a aidés à :
--générer le fichier main_interface.py,
--connecter les boutons,
--intégrer le moteur d’extraction,
--corriger les erreurs,
--finaliser l’application.
+
+- générer le fichier main_interface.py,
+- connecter les boutons,
+- intégrer le moteur d’extraction,
+- corriger les erreurs,
+- finaliser l’application.
 
 ---
