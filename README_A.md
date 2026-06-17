@@ -38,15 +38,45 @@ Et de générer un fichier de sortie qui sera transmis au groupe B.
 
 
 
-
-
 \# Fichier de sortie
 
 &#x09;Le fichier de sortie est un fichier au format CSV généré automatiquement par l'application.
 
+&#x09;La première ligne correspond à l'en-tête.
+
+&#x09;Les colonnes, dans l'ordre, sont :
+
+&#x20;   		timestamp
+
+&#x20;   		signal\_type
+
+&#x20;   		signal\_source
+
+&#x20;   		sample\_rate
+
+&#x20;   		duration
+
+&#x20;   		sample\_index
+
+&#x20;   		time
+
+&#x20;   		samples
 
 
-&#x09;La Première ligne est une en tête.
+
+&#x09;Exemple :
+
+
+
+&#x09;	timestamp           signal\_type  signal\_source  sample\_rate  duration  sample\_index  time    samples
+
+&#x09;	2026-06-16T14:24:46 CSV          micro          8192         0.4999    0             0.0     4.366
+
+&#x09;	2026-06-16T14:24:46 CSV          micro          8192         0.4999    1             0.0001  3.676
+
+&#x09;	2026-06-16T14:24:46 CSV          micro          8192         0.4999    2             0.0002  2.6936
+
+
 
 
 
