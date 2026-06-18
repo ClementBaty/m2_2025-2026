@@ -10,7 +10,7 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.uic import loadUi
 
 from F_1___Common_Structure import COMMONCLASS
-
+from F_1_B_1_Image_Zoom import ImageZoom
 
 class Fenetregraphique(COMMONCLASS):
     """Fenêtre dédiée à l'affichage des graphiques d'analyse."""
@@ -24,15 +24,21 @@ class Fenetregraphique(COMMONCLASS):
                 d'analyse.
         """
         super().__init__()
-
         loadUi(r"F_Ui\F_graph_window.ui", self)
-
         self.comon_var = comon_var
-
-        self.F_quit_button.clicked.connect(
-            lambda: self.go_to("general")
-        )
+        self.labels()
+        self.F_quit_button.clicked.connect(lambda: self.go_to("general"))
         self.F_refresh_button.clicked.connect(self.afficher_images)
+
+    def labels(self):
+        for attr in ["F_time_signal_label", "F_fft_signal_label"]:
+            old_label = getattr(self, attr)
+            new_widget = ImageZoom(self)
+            new_widget.setGeometry(old_label.geometry())
+            old_label.hide()
+            new_widget.show()
+            setattr(self, attr, new_widget)
+
 
     def showEvent(self, event):
         """Actualise les images à chaque affichage de la fenêtre.
