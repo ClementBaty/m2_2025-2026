@@ -36,6 +36,7 @@ class ImageZoom(QLabel):
             Qt.SmoothTransformation
         )
         super().setPixmap(scaled)
+        self.resize(w, h)
 
     def wheelEvent(self, event):
         """Zoom avec la molette."""

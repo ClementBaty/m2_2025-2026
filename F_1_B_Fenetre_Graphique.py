@@ -8,6 +8,7 @@ avec les autres fenêtres de l'application.
 
 from PyQt5.QtGui import QPixmap
 from PyQt5.uic import loadUi
+from PyQt5.QtWidgets import QScrollArea
 
 from F_1___Common_Structure import COMMONCLASS
 from F_1_B_1_Image_Zoom import ImageZoom
@@ -34,9 +35,15 @@ class Fenetregraphique(COMMONCLASS):
         for attr in ["F_time_signal_label", "F_fft_signal_label"]:
             old_label = getattr(self, attr)
             new_widget = ImageZoom(self)
-            new_widget.setGeometry(old_label.geometry())
+
+            """Pour pouvoir bouger les courbes zoomées"""
+            scroll = QScrollArea(self)
+            scroll.setWidget(new_widget)
+            scroll.setWidgetResizable(False)
+            scroll.setGeometry(old_label.geometry())
+
             old_label.hide()
-            new_widget.show()
+            scroll.show()
             setattr(self, attr, new_widget)
 
 
