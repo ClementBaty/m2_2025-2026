@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1300</width>
+    <height>820</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Filtrage de signal</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="centralwidget_layout">
+    <item>
+     <widget class="QWidget" name="panneau_controles">
+      <property name="minimumSize">
+       <size>
+        <width>370</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:#FFFFFF;border-right:1px solid #E2E5EA;</string>
+      </property>
+      <layout class="QVBoxLayout" name="panneau_controles_layout">
+       <item>
+        <widget class="QLabel" name="qlabel_unnamed">
+         <property name="text">
+          <string>SIGNAL</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:#6B7280;font-size:11px;font-weight:600;letter-spacing:1px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_load">
+         <property name="text">
+          <string>📁  Charger signal</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{background:#fff;color:#374151;border:1px solid #D5D9DF;border-radius:6px;font-size:14px;}QPushButton:hover{background:#F3F4F6;}</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_generate">
+         <property name="text">
+          <string>〰  Générer signal test</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{background:#fff;color:#374151;border:1px solid #D5D9DF;border-radius:6px;font-size:14px;}QPushButton:hover{background:#F3F4F6;}</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint">
+          <size>
+           <width>0</width>
+           <height>8</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="qlabel_unnamed">
+         <property name="text">
+          <string>TYPE DE FILTRE</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:#6B7280;font-size:11px;font-weight:600;letter-spacing:1px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="combo_filter">
+         <item>
+          <property name="text">
+           <string>Passe-bas</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Passe-haut</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Passe-bande</string>
+          </property>
+         </item>
+         <property name="styleSheet">
+          <string notr="true">QComboBox{padding:8px 12px;border:1px solid #D5D9DF;border-radius:6px;font-size:14px;background:#fff;}</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint">
+          <size>
+           <width>0</width>
+           <height>8</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="qlabel_unnamed">
+         <property name="text">
+          <string>FRÉQUENCE DE COUPURE (Hz)</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:#6B7280;font-size:11px;font-weight:600;letter-spacing:1px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="panneau_controles_layout_8">
+         <item>
+          <widget class="QSlider" name="slider_fc">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>22050</number>
+           </property>
+           <property name="value">
+            <number>1000</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="edit_fc">
+           <property name="text">
+            <string>1000</string>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>70</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit{border:1px solid #D5D9DF;border-radius:6px;padding:6px;font-size:14px;background:#fff;}</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="qlabel_unnamed">
+           <property name="text">
+            <string>Hz</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="panneau_controles_layout_9">
+         <item>
+          <widget class="QLabel" name="lbl_fc_min">
+           <property name="text">
+            <string>1 Hz</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#8A929E;font-size:11px;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="spacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="lbl_fc_max">
+           <property name="text">
+            <string>22050 Hz</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#8A929E;font-size:11px;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="spacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="lbl_nyq">
+           <property name="text">
+            <string>N = 2</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#8A929E;font-size:11px;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="spacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint">
+          <size>
+           <width>0</width>
+           <height>8</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="qlabel_unnamed">
+         <property name="text">
+          <string>ORDRE DU FILTRE</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:#6B7280;font-size:11px;font-weight:600;letter-spacing:1px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="panneau_controles_layout_12">
+         <item>
+          <widget class="QSlider" name="slider_ordre">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>10</number>
+           </property>
+           <property name="value">
+            <number>2</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="edit_ordre">
+           <property name="text">
+            <string>2</string>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>70</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit{border:1px solid #D5D9DF;border-radius:6px;padding:6px;font-size:14px;background:#fff;}</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="panneau_controles_layout_13">
+         <item>
+          <widget class="QLabel" name="qlabel_unnamed">
+           <property name="text">
+            <string>1</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#8A929E;font-size:11px;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="spacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="qlabel_unnamed">
+           <property name="text">
+            <string>10</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#8A929E;font-size:11px;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="spacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint">
+          <size>
+           <width>0</width>
+           <height>12</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_apply">
+         <property name="text">
+          <string>▶  Appliquer filtre</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{background:#2563EB;color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:600;}QPushButton:hover{background:#1D4ED8;}</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_reset">
+         <property name="text">
+          <string>↻  Réinitialiser</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{background:#fff;color:#374151;border:1px solid #D5D9DF;border-radius:6px;font-size:14px;}QPushButton:hover{background:#F3F4F6;}</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_save_csv">
+         <property name="text">
+          <string>💾  Sauvegarder CSV</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{background:#fff;color:#374151;border:1px solid #D5D9DF;border-radius:6px;font-size:14px;}QPushButton:hover{background:#F3F4F6;}</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_save_plot">
+         <property name="text">
+          <string>🖼  Sauvegarder graphique</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{background:#fff;color:#374151;border:1px solid #D5D9DF;border-radius:6px;font-size:14px;}QPushButton:hover{background:#F3F4F6;}</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint">
+          <size>
+           <width>0</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="qlabel_unnamed">
+         <property name="text">
+          <string>AFFICHAGE</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:#6B7280;font-size:11px;font-weight:600;letter-spacing:1px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="check_brut">
+         <property name="text">
+          <string>Afficher signal brut</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size:13px;color:#3A414C;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="check_filtre">
+         <property name="text">
+          <string>Afficher signal filtré</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size:13px;color:#3A414C;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="panneau_graphes">
+      <property name="styleSheet">
+       <string notr="true">background:#FFFFFF;</string>
+      </property>
+      <layout class="QVBoxLayout" name="panneau_graphes_layout">
+       <item>
+        <widget class="QWidget" name="canvas"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="panneau_graphes_layout_1">
+         <item>
+          <widget class="QFrame" name="frame_fichier">
+           <property name="styleSheet">
+            <string notr="true">QFrame{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:8px;}</string>
+           </property>
+           <layout class="QVBoxLayout" name="frame_fichier_layout">
+            <item>
+             <widget class="QLabel" name="qlabel_unnamed">
+              <property name="text">
+               <string>📁  Fichier</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:#6B7280;font-size:12px;font-weight:600;border:none;</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="val_fichier">
+              <property name="text">
+               <string>—</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:#111827;font-size:13px;border:none;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame_echant">
+           <property name="styleSheet">
+            <string notr="true">QFrame{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:8px;}</string>
+           </property>
+           <layout class="QVBoxLayout" name="frame_echant_layout">
+            <item>
+             <widget class="QLabel" name="qlabel_unnamed">
+              <property name="text">
+               <string>〰  Échantillons</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:#6B7280;font-size:12px;font-weight:600;border:none;</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="val_echant">
+              <property name="text">
+               <string>—</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:#111827;font-size:13px;border:none;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame_fs">
+           <property name="styleSheet">
+            <string notr="true">QFrame{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:8px;}</string>
+           </property>
+           <layout class="QVBoxLayout" name="frame_fs_layout">
+            <item>
+             <widget class="QLabel" name="qlabel_unnamed">
+              <property name="text">
+               <string>🕐  fs (Hz)</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:#6B7280;font-size:12px;font-weight:600;border:none;</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="val_fs">
+              <property name="text">
+               <string>—</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:#111827;font-size:13px;border:none;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame_filtre">
+           <property name="styleSheet">
+            <string notr="true">QFrame{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:8px;}</string>
+           </property>
+           <layout class="QVBoxLayout" name="frame_filtre_layout">
+            <item>
+             <widget class="QLabel" name="qlabel_unnamed">
+              <property name="text">
+               <string>⧩  Filtre actif</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:#6B7280;font-size:12px;font-weight:600;border:none;</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="val_filtre">
+              <property name="text">
+               <string>—</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:#111827;font-size:13px;border:none;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+</ui>
