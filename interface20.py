@@ -1,6 +1,6 @@
 """
 interface.py
-============
+
 Squelette de l'interface graphique — Équipe B
 Contient UNIQUEMENT la construction visuelle (widgets, layouts, styles).
 Aucune logique de traitement ici : tout est branché depuis main.py.
@@ -21,9 +21,8 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 
 
-# ═════════════════════════════════════════════════════════════════════════
+
 class MainApp(QMainWindow):
-# ═════════════════════════════════════════════════════════════════════════
     """
     Fenêtre principale — interface uniquement.
 
@@ -46,9 +45,9 @@ class MainApp(QMainWindow):
         self._build_ui()
         self._reset_axes()
 
-    # ──────────────────────────────────────────────────────────────────────
+    
     # CONSTRUCTION DE L'INTERFACE
-    # ──────────────────────────────────────────────────────────────────────
+    
 
     def _build_ui(self):
         central = QWidget()
@@ -57,7 +56,7 @@ class MainApp(QMainWindow):
         root.setContentsMargins(0, 0, 0, 0)
         root.setSpacing(0)
 
-        # ╔══════════════ PANNEAU GAUCHE (contrôles) ══════════════╗
+        #  PANNEAU GAUCHE (contrôles) 
         panneau = QWidget()
         panneau.setFixedWidth(370)
         panneau.setStyleSheet("background:#FFFFFF;border-right:1px solid #E2E5EA;")
@@ -166,7 +165,7 @@ class MainApp(QMainWindow):
         pl.addStretch()
         root.addWidget(panneau)
 
-        # ╔══════════════ PANNEAU DROIT (graphes) ══════════════╗
+        #  PANNEAU DROIT (graphes) 
         droite = QWidget()
         droite.setStyleSheet("background:#FFFFFF;")
         dl = QVBoxLayout(droite)
@@ -198,9 +197,8 @@ class MainApp(QMainWindow):
         self.statusBar().showMessage("Prêt")
         self.statusBar().setStyleSheet("color:#5A6472;font-size:12px;")
 
-    # ──────────────────────────────────────────────────────────────────────
+    
     # GRAPHE — état initial (purement visuel)
-    # ──────────────────────────────────────────────────────────────────────
 
     def _reset_axes(self):
         """Remet les deux graphes dans leur état vide initial."""
@@ -213,9 +211,8 @@ class MainApp(QMainWindow):
         self.ax_bas.set_title("Signal filtré seul")
         self.canvas.draw()
 
-    # ──────────────────────────────────────────────────────────────────────
+    
     # HELPERS DE CONSTRUCTION VISUELLE
-    # ──────────────────────────────────────────────────────────────────────
 
     def _titre(self, texte):
         l = QLabel(texte)
