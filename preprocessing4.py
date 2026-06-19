@@ -1,8 +1,4 @@
 """
-preprocessing.py
-
-Groupe B - Prétraitement du signal
-
 Fonctionnalités :
 - Lecture automatique CSV / JSON
 - Détection automatique du signal
@@ -11,8 +7,6 @@ Fonctionnalités :
 - Extraction de caractéristiques
 - Export CSV standardisé
 - Visualisation optionnelle
-
-Auteur : Groupe B
 """
 
 import os
@@ -26,9 +20,9 @@ from scipy.signal import butter, filtfilt
 from scipy.fft import fft, fftfreq
 
 
-# ==========================================================
+
 # PARAMÈTRES MODIFIABLES
-# ==========================================================
+
 
 SAMPLING_RATE = 1000  # Hz
 FILTER_TYPE = "lowpass"  # "lowpass" ou "highpass"
@@ -41,38 +35,41 @@ OUTPUT_FILE = "signal_filtered.csv"
 SHOW_PLOTS = True
 
 
-# ==========================================================
 # LECTURE DES DONNÉES
-# ==========================================================
 
-def Conversion_chaine_liste(value):# Convertit une chaîne contenant un signal en liste numérique.
-
-    if isinstance(value, list):
+def Conversion_chaine_liste(value): 
+  """
+  Convertit une chaîne contenant un signal en liste numérique.
+  """
+  if isinstance(value, list):
         return np.asarray(value, dtype=float)
 
-    if isinstance(value, np.ndarray):
+  if isinstance(value, np.ndarray):
         return value.astype(float)
 
-    if not isinstance(value, str):
+  if not isinstance(value, str):
         return None
 
-    try:
+  try:
         parsed = ast.literal_eval(value)
 
         if isinstance(parsed, (list, tuple)):
             return np.asarray(parsed, dtype=float)
 
-    except Exception:
+  except Exception:
         pass
 
-    try:
+  try:
         values = [float(x.strip()) for x in value.split(",")]
         return np.asarray(values)
-    except Exception:
+  except Exception:
         return None
 
 
-def recherche_colonne(df): # Recherche automatique de la colonne contenant le signal.
+def recherche_colonne(df): 
+    """
+    Recherche automatique de la colonne contenant le signal.
+    """
 
     priority_names = [
         "samples",
@@ -108,13 +105,14 @@ def recherche_colonne(df): # Recherche automatique de la colonne contenant le si
     return None
 
 
-def Charger_signal(file_path):# Charge un signal depuis CSV ou JSON.
-
+def charger_signal(file_path):
+    """
+    Charge un signal depuis CSV ou JSON.
+    """
     ext = os.path.splitext(file_path)[1].lower()
 
-    # ======================================================
+    
     # CSV
-    # ======================================================
 
     if ext == ".csv":
 
@@ -141,9 +139,8 @@ def Charger_signal(file_path):# Charge un signal depuis CSV ou JSON.
         if not numeric_df.empty:
             return numeric_df.to_numpy().flatten()
 
-    # ======================================================
+    
     # JSON
-    # ======================================================
 
     elif ext == ".json":
 
@@ -169,9 +166,8 @@ def Charger_signal(file_path):# Charge un signal depuis CSV ou JSON.
     )
 
 
-# ==========================================================
+
 # FILTRAGE
-# ==========================================================
 
 def butter_filter(
     signal,
@@ -195,11 +191,13 @@ def butter_filter(
     return filtfilt(b, a, signal)
 
 
-# ==========================================================
-# NORMALISATION
-# ==========================================================
 
-def Normalisation_signal(signal):  #Normalisation entre -1 et 1.
+# NORMALISATION
+
+def Normalisation_signal(signal):  
+    """
+    Normalisation du signal entre -1 et 1.
+    """
 
     max_abs = np.max(np.abs(signal))
 
@@ -209,9 +207,8 @@ def Normalisation_signal(signal):  #Normalisation entre -1 et 1.
     return signal / max_abs
 
 
-# ==========================================================
+
 # EXTRACTION DE CARACTÉRISTIQUES
-# ==========================================================
 
 def extraction_amp_freq(signal, fs):
     # Calcule :
@@ -242,34 +239,33 @@ def extraction_amp_freq(signal, fs):
     }
 
 
-# ==========================================================
+
 # EXPORT
-# ==========================================================
 
 def sauvegarde_resultat(signal_filtered, features, output_file):
-    # Sauvegarde :
-    # sample_index | filtered_signal
+   """
+    Sauvegarde :
+    sample_index | filtered_signal
 
-    # et ajoute les caractéristiques à chaque ligne.
-   
+    et ajoute les caractéristiques à chaque ligne.
+   """
 
-    df = pd.DataFrame({
+   df = pd.DataFrame({
         "sample_index": np.arange(len(signal_filtered)),
         "filtered_signal": signal_filtered,
         "max_amplitude": features["max_amplitude"],
         "dominant_frequency": features["dominant_frequency"]
     })
 
-    df.to_csv(output_file, index=False)
+   df.to_csv(output_file, index=False)
 
-    print(f"Résultats sauvegardés dans : {output_file}")
+   print(f"Résultats sauvegardés dans : {output_file}")
 
 
-# ==========================================================
+
 # VISUALISATION
-# ==========================================================
 
-def Affichage(raw_signal):
+def affichage(raw_signal):
 
     plt.figure(figsize=(12, 5))
 
@@ -287,7 +283,7 @@ def Affichage(raw_signal):
 
 
 
-def Affichage_Signal_Filtre(filtered_signal):
+def affichage_signal_filtre(filtered_signal):
 
     plt.figure(figsize=(12, 5))
 
@@ -308,7 +304,7 @@ def Affichage_Signal_Filtre(filtered_signal):
     plt.show()
     
     
-def Affichage_Combinée(raw_signal,filtered_signal):
+def affichage_combinée(raw_signal,filtered_signal):
 
     plt.figure(figsize=(12, 5))
 
@@ -330,15 +326,14 @@ def Affichage_Combinée(raw_signal,filtered_signal):
     plt.tight_layout()
     plt.show()
 
-# ==========================================================
+
 # PIPELINE PRINCIPAL
-# ==========================================================
 
 def main():
 
     print("Chargement du signal...")
 
-    raw_signal = Charger_signal(INPUT_FILE)
+    raw_signal = charger_signal(INPUT_FILE)
 
     print(
         f"Nombre d'échantillons détectés : {len(raw_signal)}"
@@ -372,10 +367,9 @@ def main():
     )
 
     if SHOW_PLOTS:
-       Affichage(
-            raw_signal)
-       Affichage_Signal_Filtre(filtered_signal)  
-       Affichage_Combinée(raw_signal,filtered_signal)
+       affichage(raw_signal)
+       affichage_signal_filtre(filtered_signal)  
+       affichage_combinée(raw_signal,filtered_signal)
         
 
 
