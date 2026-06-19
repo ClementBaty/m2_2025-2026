@@ -39,9 +39,8 @@ def load_signal_csv(file_path):
         print("Erreur : le fichier est vide.")
         return None
 
-    # -----------------------------
+    
     # Recherche automatique colonne
-    # -----------------------------
 
     signal_column = None
 
@@ -65,9 +64,8 @@ def load_signal_csv(file_path):
 
     print(f"Colonne détectée : {signal_column}")
 
-    # -----------------------------
+    
     # Recherche première ligne valide
-    # -----------------------------
 
     signal = None
 
@@ -98,9 +96,8 @@ def load_signal_csv(file_path):
         except ValueError:
             pass
 
-    # -----------------------------
+    
     # Vérification finale
-    # -----------------------------
 
     if signal is None:
         print("Aucun signal valide trouvé.")
@@ -118,6 +115,7 @@ def load_signal_csv(file_path):
 
 signal = load_signal_csv("signal_raw(1).csv")
 
+# Afficher le signal
 if signal is not None:
 
     plt.figure(figsize=(10, 4))
