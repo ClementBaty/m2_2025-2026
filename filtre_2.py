@@ -2,9 +2,8 @@ import numpy as np
 from scipy import signal
 
 
-# =====================================
+
 # PROGRAMME DE FILTRAGE UNIQUEMENT
-# =====================================
 
 def filtrer_signal(
         input_signal,
