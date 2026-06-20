@@ -42,7 +42,7 @@ STYLE_SHEET = """
 QMainWindow, QWidget { background-color: #f5f7fa; color: #212529; }
 QTabWidget::pane { border: 1px solid #dee2e6; border-radius: 8px;
                    background: #ffffff; }
-QTabBar::tab { background: #e9ecef; padding: 10px 22px;
+QTabBar::tab { background: #e9ecef; padding: 10px 22px; min-width: 95px;
                border-top-left-radius: 8px; border-top-right-radius: 8px;
                margin-right: 2px; color: #495057; }
 QTabBar::tab:selected { background: #ffffff; color: #0d6efd; font-weight: bold; }
