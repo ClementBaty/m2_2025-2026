@@ -5,3 +5,7 @@ __pycache__/
 
 # PROF
 .pre-commit-config.yaml
+
+.pptx
+.json
+.vscode/settings.json
