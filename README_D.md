@@ -1,4 +1,6 @@
-# Groupe D — Classificateur de type de fichier
+# Groupe D — Classificateur de type de fichier - **TRAITEMETS.PY**
+
+
 
 **Auteurs :** Szymon SIDORKIEWICZ, Mame DIONG, Sokhna THIAM, Ouail Kassa BAGHDOUCHE
 **Module :** M2 T3I ALTERNANCE 2026
