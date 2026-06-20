@@ -728,8 +728,23 @@ def launch() -> None:
     """
     backend.ensure_directories()
     backend.build_reference()
+
+    if sys.platform == "win32":
+        # Sans ceci, Windows associe la fenêtre à l'AppUserModelID de
+        # python.exe et affiche son icône par défaut dans la barre des
+        # tâches au lieu de celle de l'application.
+        import ctypes
+        try:
+            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(
+                "GroupeD.Classificateur.GUI.1"
+            )
+        except Exception:
+            pass
+
     app = QApplication(sys.argv)
     app.setStyleSheet(STYLE_SHEET)
+    if backend.ICON_FILE.exists():
+        app.setWindowIcon(QIcon(str(backend.ICON_FILE)))
     window = MainWindow()
     window.show()
     sys.exit(app.exec_())
