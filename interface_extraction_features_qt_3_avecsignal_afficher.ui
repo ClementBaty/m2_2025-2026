@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1100</width>
+    <height>750</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Extraction de caractéristiques du signal</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="mainVerticalLayout">
+    <item>
+     <widget class="QGroupBox" name="inputGroupBox">
+      <property name="title">
+       <string>Fichier d'entrée</string>
+      </property>
+      <layout class="QGridLayout" name="inputGridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="inputPathLabel">
+         <property name="text">
+          <string>Fichier CSV ou JSON :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="inputPathLineEdit">
+         <property name="placeholderText">
+          <string>Choisir un fichier...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="browseInputButton">
+         <property name="text">
+          <string>Parcourir</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="outputGroupBox">
+      <property name="title">
+       <string>Sortie et paramètres</string>
+      </property>
+      <layout class="QGridLayout" name="outputGridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="outputFolderLabel">
+         <property name="text">
+          <string>Dossier de sortie :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="3">
+        <widget class="QLineEdit" name="outputFolderLineEdit">
+         <property name="placeholderText">
+          <string>Choisir un dossier de sortie...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QPushButton" name="browseOutputButton">
+         <property name="text">
+          <string>Parcourir</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="manualFsCheckBox">
+         <property name="text">
+          <string>Fréquence manuelle</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="fsLineEdit">
+         <property name="placeholderText">
+          <string>Exemple : 44100</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="fsUnitLabel">
+         <property name="text">
+          <string>Hz</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QCheckBox" name="exportCsvCheckBox">
+         <property name="text">
+          <string>Exporter CSV</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QCheckBox" name="exportJsonCheckBox">
+         <property name="text">
+          <string>Exporter JSON</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="5">
+        <widget class="QPushButton" name="runButton">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>36</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Lancer l'extraction et afficher le signal</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QSplitter" name="mainSplitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QGroupBox" name="resultsGroupBox">
+       <property name="title">
+        <string>Résultats des indicateurs</string>
+       </property>
+       <layout class="QVBoxLayout" name="resultsLayout">
+        <item>
+         <widget class="QTextEdit" name="resultTextEdit">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="placeholderText">
+           <string>Les caractéristiques calculées s'afficheront ici...</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="plotGroupBox">
+       <property name="title">
+        <string>Visualisation du signal</string>
+       </property>
+       <layout class="QVBoxLayout" name="plotGroupLayout">
+        <item>
+         <widget class="QWidget" name="plotWidget" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>500</width>
+            <height>380</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1100</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
