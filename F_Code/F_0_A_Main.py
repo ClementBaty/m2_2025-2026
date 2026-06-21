@@ -3,9 +3,9 @@ from PyQt5.uic import loadUi
 
 import sys
 
-from F_1___Common_Structure import COMONVAR
+from F_0_B_Common_Structure import COMONVAR
 from F_1_A_Fenetre_Principale import FenetrePrincipale
-from F_1_B_Fenetre_Graphique import Fenetregraphique
+from F_2_A_Fenetre_Graphique import Fenetregraphique
 
 
 def interface_init():

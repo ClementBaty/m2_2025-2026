@@ -2,8 +2,8 @@ from PyQt5.QtWidgets import QFileDialog
 from PyQt5.uic import loadUi
 from pathlib import Path
 
-from F_1___Common_Structure import COMMONCLASS
-from F_extracteur_de_Donnee import Donnee
+from F_0_B_Common_Structure import COMMONCLASS
+from F_1_B_Extration_des_Donnees import Donnee
 from PyQt5.QtWidgets import QTableWidgetItem
 
 

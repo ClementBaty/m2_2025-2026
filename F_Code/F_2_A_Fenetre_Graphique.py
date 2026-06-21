@@ -11,8 +11,8 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QScrollArea
 
-from F_Code.F_1___Common_Structure import COMMONCLASS
-from F_1_B_1_Image_Zoom import ImageZoom
+from F_Code.F_0_B_Common_Structure import COMMONCLASS
+from F_2_B_Image_Zoom import ImageZoom
 
 class Fenetregraphique(COMMONCLASS):
     """Fenêtre dédiée à l'affichage des graphiques d'analyse."""
