@@ -1,10 +1,10 @@
-from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QFileDialog, QTableWidgetItem
 from PyQt5.uic import loadUi
 from pathlib import Path
 
 from F_0_B_Common_Structure import COMMONCLASS
 from F_1_B_Extration_des_Donnees import Donnee
-from PyQt5.QtWidgets import QTableWidgetItem
+
 
 
 class FenetrePrincipale(COMMONCLASS):

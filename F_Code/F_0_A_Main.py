@@ -1,6 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow
-from PyQt5.uic import loadUi
-
+from PyQt5.QtWidgets import QApplication
 import sys
 
 from F_0_B_Common_Structure import COMONVAR
