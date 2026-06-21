@@ -6,9 +6,8 @@ from F_0_B_Common_Structure import COMMONCLASS
 from F_1_B_Extration_des_Donnees import Donnee
 
 
-
 class FenetrePrincipale(COMMONCLASS):
-    def __init__(self,comon_var):
+    def __init__(self, comon_var):
         super().__init__()
         loadUi(r"F_Ui\F_Interface_1_Selection.ui", self)
         self.comon_var = comon_var
@@ -61,7 +60,7 @@ class FenetrePrincipale(COMMONCLASS):
             self.set_voyant_color(self.voy_url, "red")
             self.comon_var.analysis_init()
             
-    def extraction_data(self,fichier):
+    def extraction_data(self, fichier):
         d = Donnee(str(fichier))
         if d.FichierValide:
             self.comon_var.donnees = d.donnees
@@ -74,7 +73,8 @@ class FenetrePrincipale(COMMONCLASS):
             if ancien_index < len(d.donnees):
                 self.comboBox.setCurrentIndex(ancien_index)
                 
-            colonnes = ['sample_id', 'label', 'confidence', 'fft_plot_path', 'time_series_plot_path', 'is_anomaly', 'anomaly_reason']
+            colonnes = ['sample_id', 'label', 'confidence', 'fft_plot_path', 'time_series_plot_path',
+                        'is_anomaly', 'anomaly_reason']
             self.tableWidget.setColumnCount(len(colonnes))
             self.tableWidget.setRowCount(len(d.donnees))
             self.tableWidget.setHorizontalHeaderLabels(colonnes)
@@ -84,7 +84,7 @@ class FenetrePrincipale(COMMONCLASS):
                     valeur = d.donnees[i][colonnes[j]]
                     self.tableWidget.setItem(i, j, QTableWidgetItem(str(valeur)))
                     self.tableWidget.resizeColumnsToContents()
-            if len(self.comon_var.donnees)>0:
+            if len(self.comon_var.donnees) > 0:
                 self.comboBox.setCurrentIndex(0)
                 self.maj_data(0)
                 

@@ -37,6 +37,7 @@ class COMMONCLASS(QMainWindow):
             border-radius: {radius}px;
         """)
 
+
 class COMONVAR:
     """Classe contenant les variables comunes aux interfaces,
     permet de memoriser et de comuniquer des donné entre les interfaces"""

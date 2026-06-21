@@ -14,6 +14,7 @@ from PyQt5.QtWidgets import QScrollArea, QSizePolicy
 from F_0_B_Common_Structure import COMMONCLASS
 from F_2_B_Image_Zoom import ImageZoom
 
+
 class Fenetregraphique(COMMONCLASS):
     """Fenêtre dédiée à l'affichage des graphiques d'analyse."""
 
@@ -34,6 +35,7 @@ class Fenetregraphique(COMMONCLASS):
 
         self.F_quit_button.clicked.connect(lambda: self.go_to("general"))
         self.F_refresh_button.clicked.connect(self.refresh)
+
     def showEvent(self, event):
         """Actualise les images à chaque affichage de la fenêtre.
 
@@ -79,9 +81,6 @@ class Fenetregraphique(COMMONCLASS):
 
             setattr(self, attr, new_widget)
 
-
-
-
     def afficher_images(self):
         """Affiche les images du signal temporel et de la FFT.
 
@@ -103,8 +102,6 @@ class Fenetregraphique(COMMONCLASS):
 
         if not image_signal.isNull():
             self.F_time_signal_label.setPixmap(image_signal)
-            #self.F_time_signal_label.resize(image_signal.size())
 
         if not image_fft.isNull():
             self.F_fft_signal_label.setPixmap(image_fft)
-            #self.F_fft_signal_label.resize(image_fft.size())

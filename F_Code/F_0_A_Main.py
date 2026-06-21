@@ -27,8 +27,4 @@ def interface_init():
     sys.exit(app.exec_())
 
 
-
-
 interface_init()
-
-

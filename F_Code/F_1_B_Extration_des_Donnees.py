@@ -2,6 +2,7 @@ from pathlib import Path
 import json
 import csv
 
+
 class Donnee:
     def __init__(self, chemin):
         self.existe = None
@@ -28,6 +29,6 @@ class Donnee:
 
     def convertir_json_to_list(self):
         
-       with open(self.fichier) as f:
+        with open(self.fichier) as f:
             self.donnees = json.load(f)
         
