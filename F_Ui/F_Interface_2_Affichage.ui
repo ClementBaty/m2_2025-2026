@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1491</width>
-    <height>581</height>
+    <width>800</width>
+    <height>800</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>800</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -30,8 +36,8 @@
    <widget class="QPushButton" name="F_refresh_button">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>40</y>
+      <x>680</x>
+      <y>20</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -43,41 +49,74 @@
    <widget class="QPushButton" name="F_quit_button">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>100</x>
+      <y>700</y>
+      <width>600</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RETOUR A LA PAGE DE SELECTION</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
       <y>40</y>
-      <width>56</width>
-      <height>31</height>
+      <width>624</width>
+      <height>647</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Quitter</string>
+    <property name="title">
+     <string>Affichage des Courbes</string>
     </property>
-   </widget>
-   <widget class="QLabel" name="F_time_signal_label">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>90</y>
-      <width>481</width>
-      <height>291</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="F_fft_signal_label">
-    <property name="geometry">
-     <rect>
-      <x>670</x>
-      <y>90</y>
-      <width>481</width>
-      <height>291</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="F_time_signal_label">
+       <property name="minimumSize">
+        <size>
+         <width>600</width>
+         <height>300</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>600</width>
+         <height>300</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="F_fft_signal_label">
+       <property name="minimumSize">
+        <size>
+         <width>600</width>
+         <height>300</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>600</width>
+         <height>300</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -85,8 +124,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1491</width>
-     <height>18</height>
+     <width>800</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>

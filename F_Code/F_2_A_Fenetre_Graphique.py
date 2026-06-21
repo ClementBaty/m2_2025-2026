@@ -27,24 +27,33 @@ class Fenetregraphique(COMMONCLASS):
         """
         super().__init__()
         loadUi(r"F_Ui\F_Interface_2_Affichage.ui", self)
+
         self.comon_var = comon_var
+
         self.labels()
+
         self.F_quit_button.clicked.connect(lambda: self.go_to("general"))
         self.F_refresh_button.clicked.connect(self.afficher_images)
 
     def labels(self):
         for attr in ["F_time_signal_label", "F_fft_signal_label"]:
             old_label = getattr(self, attr)
-            new_widget = ImageZoom(self)
+            parent = old_label.parent()
+            layout = parent.layout()
 
-            """Pour pouvoir bouger les courbes zoomées"""
-            scroll = QScrollArea(self)
+            new_widget = ImageZoom()
+            scroll = QScrollArea()
             scroll.setWidget(new_widget)
             scroll.setWidgetResizable(False)
-            scroll.setGeometry(old_label.geometry())
+
+            index = layout.indexOf(old_label)
+
+            if index != -1:
+                layout.replaceWidget(old_label, scroll)
 
             old_label.hide()
-            scroll.show()
+            old_label.deleteLater()
+
             setattr(self, attr, new_widget)
 
 
@@ -78,8 +87,8 @@ class Fenetregraphique(COMMONCLASS):
 
         if not image_signal.isNull():
             self.F_time_signal_label.setPixmap(image_signal)
-            self.F_time_signal_label.resize(image_signal.size())
+            #self.F_time_signal_label.resize(image_signal.size())
 
         if not image_fft.isNull():
             self.F_fft_signal_label.setPixmap(image_fft)
-            self.F_fft_signal_label.resize(image_fft.size())
+            #self.F_fft_signal_label.resize(image_fft.size())
