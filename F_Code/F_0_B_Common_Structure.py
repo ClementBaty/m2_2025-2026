@@ -41,7 +41,7 @@ class COMONVAR:
     """Classe contenant les variables comunes aux interfaces,
     permet de memoriser et de comuniquer des donné entre les interfaces"""
     def __init__(self):
-        self.chemin = "analysis.csv"
+        self.chemin = "F_analysis_test.csv"
 
         self.analysis_init()
 

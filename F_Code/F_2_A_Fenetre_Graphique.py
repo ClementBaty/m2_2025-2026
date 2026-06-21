@@ -9,7 +9,7 @@ from pathlib import Path
 
 from PyQt5.QtGui import QPixmap
 from PyQt5.uic import loadUi
-from PyQt5.QtWidgets import QScrollArea
+from PyQt5.QtWidgets import QScrollArea, QSizePolicy
 
 from F_Code.F_0_B_Common_Structure import COMMONCLASS
 from F_2_B_Image_Zoom import ImageZoom
@@ -33,7 +33,26 @@ class Fenetregraphique(COMMONCLASS):
         self.labels()
 
         self.F_quit_button.clicked.connect(lambda: self.go_to("general"))
-        self.F_refresh_button.clicked.connect(self.afficher_images)
+        self.F_refresh_button.clicked.connect(self.refresh)
+    def showEvent(self, event):
+        """Actualise les images à chaque affichage de la fenêtre.
+
+        Args:
+            event: Événement Qt déclenché lors de l'affichage.
+        """
+        super().showEvent(event)
+        self.refresh()
+
+    def refresh(self):
+        self.afficher_images()
+        text = ""
+        if self.comon_var.label != "":
+            text += f"label : {self.comon_var.label}\n"
+        if self.comon_var.label != 0:
+            text += f"confidence : {self.comon_var.confidence}\n"
+        if self.comon_var.anomaly_reason != "":
+            text += f"anomaly reason : {self.comon_var.anomaly_reason}\n"
+        self.text_box_specification.setText(text)
 
     def labels(self):
         for attr in ["F_time_signal_label", "F_fft_signal_label"]:
@@ -42,9 +61,13 @@ class Fenetregraphique(COMMONCLASS):
             layout = parent.layout()
 
             new_widget = ImageZoom()
+
             scroll = QScrollArea()
             scroll.setWidget(new_widget)
             scroll.setWidgetResizable(False)
+
+            scroll.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+            scroll.setFixedSize(old_label.size())
 
             index = layout.indexOf(old_label)
 
@@ -57,14 +80,7 @@ class Fenetregraphique(COMMONCLASS):
             setattr(self, attr, new_widget)
 
 
-    def showEvent(self, event):
-        """Actualise les images à chaque affichage de la fenêtre.
 
-        Args:
-            event: Événement Qt déclenché lors de l'affichage.
-        """
-        super().showEvent(event)
-        self.afficher_images()
 
     def afficher_images(self):
         """Affiche les images du signal temporel et de la FFT.

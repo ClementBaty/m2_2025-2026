@@ -14,7 +14,7 @@ class ImageZoom(QLabel):
         self._offset_y = 0
         self.setFocusPolicy(Qt.WheelFocus)
         self.setAlignment(Qt.AlignCenter)
-        self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         self.setMouseTracking(True)
 
     def setPixmap(self, pixmap):
@@ -25,18 +25,20 @@ class ImageZoom(QLabel):
         self._update()
 
     def _update(self):
-        print("_update appelé, pixmap:", self._pixmap_original)
         if self._pixmap_original is None:
             return
+
         w = int(self._pixmap_original.width() * self._zoom)
         h = int(self._pixmap_original.height() * self._zoom)
+
         scaled = self._pixmap_original.scaled(
             w, h,
             Qt.KeepAspectRatio,
             Qt.SmoothTransformation
         )
+
         super().setPixmap(scaled)
-        self.resize(w, h)
+        self.setFixedSize(scaled.size())
 
     def wheelEvent(self, event):
         """Zoom avec la molette."""
