@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import QTableWidgetItem
 class FenetrePrincipale(COMMONCLASS):
     def __init__(self,comon_var):
         super().__init__()
-        loadUi(r"F_Ui\F_Interface_1.ui", self)
+        loadUi(r"F_Ui\F_Interface_1_Selection.ui", self)
         self.comon_var = comon_var
         self.affichage_graph.clicked.connect(lambda: self.go_to("graphique"))
 
@@ -32,9 +32,6 @@ class FenetrePrincipale(COMMONCLASS):
         super().showEvent(event)
         print("La fenêtre PRINCIPAL vient d'être affichée")
         self.verif_chemin()
-
-    def action_bouton(self):
-        print("Bouton cliqué")
 
     def choose_files_csv_json_pyqt5(self):
         """
@@ -87,6 +84,9 @@ class FenetrePrincipale(COMMONCLASS):
                     valeur = d.donnees[i][colonnes[j]]
                     self.tableWidget.setItem(i, j, QTableWidgetItem(str(valeur)))
                     self.tableWidget.resizeColumnsToContents()
+            if len(self.comon_var.donnees)>0:
+                self.comboBox.setCurrentIndex(0)
+                self.maj_data(0)
                 
     def maj_data(self, index):
         """cette fonction permet de changer les donné enregistrer a chaque changement de l'index"""

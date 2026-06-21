@@ -11,7 +11,7 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QScrollArea
 
-from F_1___Common_Structure import COMMONCLASS
+from F_Code.F_1___Common_Structure import COMMONCLASS
 from F_1_B_1_Image_Zoom import ImageZoom
 
 class Fenetregraphique(COMMONCLASS):
@@ -26,7 +26,7 @@ class Fenetregraphique(COMMONCLASS):
                 d'analyse.
         """
         super().__init__()
-        loadUi(r"F_Ui\F_graph_window.ui", self)
+        loadUi(r"F_Ui\F_Interface_2_Affichage.ui", self)
         self.comon_var = comon_var
         self.labels()
         self.F_quit_button.clicked.connect(lambda: self.go_to("general"))
@@ -66,8 +66,7 @@ class Fenetregraphique(COMMONCLASS):
         """
         chemin_signal = self.comon_var.time_series_plot_path
         chemin_fft = self.comon_var.fft_plot_path
-        print(chemin_signal)
-        print(chemin_fft)
+
         if chemin_signal == "" or not Path(chemin_signal).exists():
             chemin_signal = "F_ERREUR_IMAGE_NOT_FOUND.png"
 
