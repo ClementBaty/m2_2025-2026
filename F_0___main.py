@@ -9,6 +9,8 @@ from F_1_B_Fenetre_Graphique import Fenetregraphique
 
 
 def interface_init():
+    """permet de charger les interface (initialisation du programme)
+    puis d'afficher l'interface 1, gère egalement la fin du programmes"""
     app = QApplication(sys.argv)
     comon_var = COMONVAR()
     fenetre1 = FenetrePrincipale(comon_var)
