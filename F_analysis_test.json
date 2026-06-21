@@ -3,8 +3,8 @@
     "sample_id":0,
     "label":"audio",
     "confidence":0.95,
-    "fft_plot_path":"plots\/fft_0.png",
-    "time_series_plot_path":"plots\/time_series_0.png",
+    "fft_plot_path":"F_plots_test\/fft_0.png",
+    "time_series_plot_path":"F_plots_test\/time_series_0.png",
     "is_anomaly":false,
     "anomaly_reason":null
   },
@@ -12,8 +12,8 @@
     "sample_id":1,
     "label":"audio",
     "confidence":0.92,
-    "fft_plot_path":"plots\/fft_1.png",
-    "time_series_plot_path":"plots\/time_series_1.png",
+    "fft_plot_path":"F_plots_test\/fft_1.png",
+    "time_series_plot_path":"F_plots_test\/time_series_1.png",
     "is_anomaly":false,
     "anomaly_reason":null
   },
@@ -21,8 +21,8 @@
     "sample_id":2,
     "label":"noise",
     "confidence":0.88,
-    "fft_plot_path":"plots\/fft_2.png",
-    "time_series_plot_path":"plots\/time_series_2.png",
+    "fft_plot_path":"F_plots_test\/fft_2.png",
+    "time_series_plot_path":"F_plots_test\/time_series_2.png",
     "is_anomaly":true,
     "anomaly_reason":"Low confidence and high frequency noise"
   },
@@ -30,8 +30,8 @@
     "sample_id":3,
     "label":"audio",
     "confidence":0.97,
-    "fft_plot_path":"plots\/fft_3.png",
-    "time_series_plot_path":"plots\/time_series_3.png",
+    "fft_plot_path":"F_plots_test\/fft_3.png",
+    "time_series_plot_path":"F_plots_test\/time_series_3.png",
     "is_anomaly":false,
     "anomaly_reason":null
   }
