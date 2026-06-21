@@ -22,7 +22,7 @@ class FenetrePrincipale(COMMONCLASS):
         self.init_voyant(self.voy_url)
         self.init_voyant(self.LED_1)
 
-        self.comboBox.currentIndexChanged.connect(self.maj_led)
+        self.comboBox.currentIndexChanged.connect(self.maj_data)
         self.tableWidget.setStyleSheet("QTableWidget::item:selected { background-color: #1a73e8; color: white; }")
         
     def showEvent(self, event):
@@ -88,8 +88,18 @@ class FenetrePrincipale(COMMONCLASS):
                     self.tableWidget.setItem(i, j, QTableWidgetItem(str(valeur)))
                     self.tableWidget.resizeColumnsToContents()
                 
-    def maj_led(self, index):
+    def maj_data(self, index):
+        """cette fonction permet de changer les donné enregistrer a chaque changement de l'index"""
         point = self.comon_var.donnees[index]
+        self.comon_var.sample_id = index
+        self.comon_var.label = point['label']
+        self.comon_var.confidence = point['confidence']
+        self.comon_var.fft_plot_path = point['fft_plot_path']
+        self.comon_var.time_series_plot_path = point['time_series_plot_path']
+        self.comon_var.is_anomaly = point['is_anomaly']
+        self.comon_var.anomaly_reason = point['anomaly_reason']
+
+        """verification du 'is_anomaly' et change la couleur du voyant"""
         if point['is_anomaly'] == 'True':
             self.set_voyant_color(self.LED_1, "red")
         else:

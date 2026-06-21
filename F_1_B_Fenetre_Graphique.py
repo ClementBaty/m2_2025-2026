@@ -5,6 +5,7 @@ les images du signal temporel et de la transformée de Fourier (FFT).
 Les chemins des images sont récupérés depuis l'objet comon_var partagé
 avec les autres fenêtres de l'application.
 """
+from pathlib import Path
 
 from PyQt5.QtGui import QPixmap
 from PyQt5.uic import loadUi
@@ -60,17 +61,18 @@ class Fenetregraphique(COMMONCLASS):
         """Affiche les images du signal temporel et de la FFT.
 
         Les chemins sont récupérés depuis self.comon_var.
-        Si les chemins sont vides, des images de test sont utilisées
+        Si les chemins sont vides, une image ,image not found apparait
         afin de permettre un fonctionnement minimal de l'interface.
         """
         chemin_signal = self.comon_var.time_series_plot_path
         chemin_fft = self.comon_var.fft_plot_path
+        print(chemin_signal)
+        print(chemin_fft)
+        if chemin_signal == "" or not Path(chemin_signal).exists():
+            chemin_signal = "F_ERREUR_IMAGE_NOT_FOUND.png"
 
-        if chemin_signal == "":
-            chemin_signal = "test_signal.png"
-
-        if chemin_fft == "":
-            chemin_fft = "test_fft.png"
+        if chemin_fft == "" or not Path(chemin_fft).exists():
+            chemin_fft = "F_ERREUR_IMAGE_NOT_FOUND.png"
 
         image_signal = QPixmap(chemin_signal)
         image_fft = QPixmap(chemin_fft)
