@@ -4,6 +4,11 @@ import csv
 
 
 class Donnee:
+    """
+    class permettant l'extraction des donné issue du fichier selectionner.
+    detect automatiquement lextention du fichier (.csv ou .json) et active la fonction de recuperation adapter.
+    renvoir une liste de donnée
+    """
     def __init__(self, chemin):
         self.existe = None
         self.fichier = Path(chemin)
@@ -28,7 +33,6 @@ class Donnee:
                 self.donnees.append(point)
 
     def convertir_json_to_list(self):
-        
         with open(self.fichier) as f:
             self.donnees = json.load(f)
         

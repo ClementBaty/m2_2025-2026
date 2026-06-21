@@ -41,4 +41,3 @@ F_1_A_  viens enssuite la numerotation par lettre,
 l'organisation est identique a celle de F_Code;
 - F_Interface_1_Selection.ui = Interface 1 (selection des données)
 - FF_Interface_2_Affichage.ui = interface 2 (affichage des coubes)
-## extraction du fichier

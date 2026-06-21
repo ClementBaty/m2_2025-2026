@@ -38,7 +38,6 @@ class Fenetregraphique(COMMONCLASS):
 
     def showEvent(self, event):
         """Actualise les images à chaque affichage de la fenêtre.
-
         Args:
             event: Événement Qt déclenché lors de l'affichage.
         """
@@ -46,6 +45,7 @@ class Fenetregraphique(COMMONCLASS):
         self.refresh()
 
     def refresh(self):
+        """fonction permetant de chager et de lancer les affichages des image, text."""
         self.afficher_images()
         text = ""
         if self.comon_var.label != "":
@@ -82,10 +82,11 @@ class Fenetregraphique(COMMONCLASS):
             setattr(self, attr, new_widget)
 
     def afficher_images(self):
-        """Affiche les images du signal temporel et de la FFT.
+        """
+        Affiche les images du signal temporel et de la FFT.
 
         Les chemins sont récupérés depuis self.comon_var.
-        Si les chemins sont vides, une image ,image not found apparait
+        Si les chemins sont vides ou inexistant, une image 'image not found' apparait
         afin de permettre un fonctionnement minimal de l'interface.
         """
         chemin_signal = self.comon_var.time_series_plot_path
